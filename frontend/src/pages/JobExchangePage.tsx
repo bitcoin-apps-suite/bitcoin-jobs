@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { HandCashService } from '../services/HandCashService';
-import SpreadsheetTaskbar from '../components/SpreadsheetTaskbar';
+import React, { useState } from 'react';
 import './JobExchangePage.css';
 
 // Types for the 3 pillars of the job marketplace
@@ -242,12 +240,6 @@ const JobExchangePage: React.FC<{
 
   return (
     <div className="job-exchange-page">
-      <SpreadsheetTaskbar
-        isAuthenticated={isAuthenticated}
-        currentUser={currentUser}
-        onLogout={onLogout}
-      />
-      
       <div className="job-exchange-container">
         <header className="exchange-header">
           <h1>Bitcoin Jobs Exchange</h1>

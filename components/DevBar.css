@@ -1,0 +1,318 @@
+/* POC Banner at Top */
+.dev-poc-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 32px;
+  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  z-index: 10001;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+  padding: 0 12px;
+}
+
+.dev-poc-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: white;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.dev-poc-icon {
+  font-size: 12px;
+}
+
+.dev-poc-title {
+  font-weight: 600;
+}
+
+.dev-poc-text {
+  opacity: 0.9;
+}
+
+.dev-poc-links {
+  display: flex;
+  gap: 12px;
+  margin-left: 16px;
+  font-size: 12px;
+}
+
+.dev-poc-links a {
+  color: white;
+  text-decoration: underline;
+  opacity: 0.9;
+  font-weight: 400;
+}
+
+.dev-poc-links a:hover {
+  opacity: 1;
+}
+
+/* Developer Sidebar */
+.dev-bar {
+  position: fixed;
+  left: 0;
+  top: 60px; /* Below POC banner (32px) and Taskbar (28px) */
+  bottom: 0;
+  width: 260px;
+  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  transition: width 0.3s ease;
+  z-index: 9989;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.dev-bar.collapsed {
+  width: 60px;
+  overflow: hidden;
+}
+
+.dev-bar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.dev-bar-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #8b5cf6;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.dev-bar-logo {
+  color: #8b5cf6;
+  flex-shrink: 0;
+}
+
+.dev-bar-toggle {
+  background: transparent;
+  border: none;
+  color: #8b5cf6;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.dev-bar-toggle:hover {
+  background: rgba(139, 92, 246, 0.1);
+  transform: scale(1.1);
+}
+
+.dev-bar-nav {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px;
+}
+
+.dev-bar-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  margin: 4px 0;
+  border-radius: 8px;
+  color: #b0b0b0;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  position: relative;
+  font-size: 14px;
+}
+
+.dev-bar-item:hover {
+  background: rgba(139, 92, 246, 0.1);
+  color: #8b5cf6;
+  transform: translateX(2px);
+}
+
+.dev-bar-item.active {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(124, 58, 237, 0.2));
+  color: #8b5cf6;
+  font-weight: 600;
+}
+
+.dev-bar-item.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 70%;
+  background: #8b5cf6;
+  border-radius: 0 2px 2px 0;
+}
+
+.dev-bar-label {
+  flex: 1;
+}
+
+.dev-bar-badge {
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 10px;
+  text-transform: uppercase;
+}
+
+.dev-bar-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 12px 0;
+}
+
+.dev-bar-stats {
+  padding: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.dev-bar-stats h4 {
+  color: #8b5cf6;
+  font-size: 12px;
+  text-transform: uppercase;
+  margin: 0 0 12px 0;
+  letter-spacing: 1px;
+}
+
+.dev-stat {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 8px 0;
+  font-size: 13px;
+}
+
+.dev-stat-label {
+  color: #808080;
+}
+
+.dev-stat-value {
+  color: #8b5cf6;
+  font-weight: 600;
+}
+
+.dev-bar-footer {
+  padding: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dev-bar-cta {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(124, 58, 237, 0.1));
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 8px;
+  padding: 12px;
+  text-align: center;
+}
+
+.dev-bar-cta p {
+  color: #8b5cf6;
+  font-size: 12px;
+  margin: 0 0 8px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.dev-bar-cta-button {
+  display: inline-block;
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  color: white;
+  padding: 6px 16px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.dev-bar-cta-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+}
+
+/* Collapsed state specific styles */
+.dev-bar.collapsed .dev-bar-item {
+  justify-content: center;
+  padding: 12px;
+}
+
+.dev-bar.collapsed .dev-bar-toggle {
+  margin: 0 auto;
+}
+
+.dev-bar.collapsed .dev-bar-item.active::before {
+  display: none;
+}
+
+.dev-bar.collapsed .dev-bar-badge {
+  display: none;
+}
+
+/* Scrollbar styling */
+.dev-bar-nav::-webkit-scrollbar {
+  width: 6px;
+}
+
+.dev-bar-nav::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+}
+
+.dev-bar-nav::-webkit-scrollbar-thumb {
+  background: rgba(139, 92, 246, 0.3);
+  border-radius: 3px;
+}
+
+.dev-bar-nav::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 92, 246, 0.5);
+}
+
+/* Content adjustment when sidebar is open */
+.app-container {
+  transition: margin-left 0.3s ease, padding-top 0.3s ease;
+  padding-top: 32px; /* Account for POC banner */
+}
+
+.app-container.with-dev-bar {
+  margin-left: 260px;
+}
+
+.app-container.with-dev-bar-collapsed {
+  margin-left: 60px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .dev-bar {
+    display: none; /* Hide on mobile for now */
+  }
+  
+  .app-container.with-dev-bar,
+  .app-container.with-dev-bar-collapsed {
+    margin-left: 0;
+  }
+  
+  .dev-poc-links {
+    display: none; /* Hide links on mobile to save space */
+  }
+}

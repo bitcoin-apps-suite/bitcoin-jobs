@@ -26,6 +26,13 @@ body:has(.dev-sidebar.collapsed) .app-with-sidebar {
   }
 }
 
+/* App with full width for Bitcoin OS */
+.app-full-width {
+  position: relative;
+  margin-left: 0;
+  width: 100%;
+}
+
 body {
   background: linear-gradient(135deg, #E3F2FD 0%, #FFFFFF 50%, #E1F5FE 100%);
   margin: 0;

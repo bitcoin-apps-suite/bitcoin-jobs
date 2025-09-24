@@ -1,0 +1,32 @@
+{
+    "folders": [
+        {
+            "path": "."
+        },
+        {
+            "path": "../../bitcoin-spreadsheets"
+        }
+    ],
+    "settings": {
+        "workbench.colorCustomizations": {
+            "activityBar.background": "#6ce7db",
+            "activityBar.foreground": "#15202b",
+            "activityBar.inactiveForeground": "#15202b99",
+            "activityBarBadge.background": "#d75be4",
+            "activityBarBadge.foreground": "#15202b",
+            "statusBar.background": "#40e0d0",
+            "statusBar.foreground": "#15202b",
+            "statusBarItem.hoverBackground": "#21ccbb",
+            "titleBar.activeBackground": "#40e0d0",
+            "titleBar.activeForeground": "#15202b",
+            "titleBar.inactiveBackground": "#40e0d099",
+            "titleBar.inactiveForeground": "#15202b99",
+            "sash.hoverBorder": "#6ce7db",
+            "statusBarItem.remoteBackground": "#40e0d0",
+            "statusBarItem.remoteForeground": "#15202b",
+            "activityBar.activeBackground": "#6ce7db",
+            "commandCenter.border": "#15202b99"
+        },
+        "peacock.color": "#40E0D0"
+    }
+}

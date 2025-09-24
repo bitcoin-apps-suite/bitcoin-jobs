@@ -48,7 +48,7 @@ const Footer: React.FC = () => {
         
         <div className="footer-bottom">
           <div className="footer-copyright">
-            <p>© 2025 THE BITCOIN CORPORATION LTD</p>
+            <p>© 2025 The Bitcoin Corporation LTD</p>
             <p>UK Company No. 16735102 | All rights reserved</p>
           </div>
           
