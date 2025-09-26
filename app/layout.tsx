@@ -2,11 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import Providers from '@/components/Providers'
-import AppWrapper from '@/components/AppWrapper' 
-import Footer from '@/components/Footer'
-import Taskbar from '@/components/Taskbar'
-import DevBar from '@/components/DevBar'
-import PocBar from '@/components/PocBar'
+import LayoutClient from '@/components/LayoutClient'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -34,24 +30,9 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className} style={{ margin: 0, padding: 0, minHeight: '100vh' }}>
         <Providers>
-          <PocBar />
-          <Taskbar />
-          <DevBar />
-          <div style={{ 
-            marginTop: '72px', // Space for POC bar (40px) + Taskbar (32px)
-            marginLeft: '260px', // Space for DevBar when open
-            minHeight: 'calc(100vh - 72px)',
-            display: 'flex',
-            flexDirection: 'column',
-            transition: 'margin-left 0.3s ease'
-          }}>
-            <AppWrapper>
-              <main style={{ flex: 1 }}>
-                {children}
-              </main>
-            </AppWrapper>
-            <Footer />
-          </div>
+          <LayoutClient>
+            {children}
+          </LayoutClient>
         </Providers>
       </body>
     </html>
