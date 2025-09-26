@@ -20,14 +20,14 @@ export default function TokenPage() {
   const tokenAllocation = [
     { category: "Development Contracts", percentage: 10, amount: "100,000,000", color: "bg-green-500" },
     { category: "Team & Advisors", percentage: 15, amount: "150,000,000", color: "bg-green-500" },
-    { category: "Community Rewards", percentage: 25, amount: "250,000,000", color: "bg-purple-500" },
+    { category: "Community Rewards", percentage: 25, amount: "250,000,000", color: "bg-gray-500" },
     { category: "Liquidity Pool", percentage: 20, amount: "200,000,000", color: "bg-orange-500" },
     { category: "Marketing & Partnerships", percentage: 10, amount: "100,000,000", color: "bg-pink-500" },
     { category: "Reserve Fund", percentage: 20, amount: "200,000,000", color: "bg-gray-500" }
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-green-900 to-indigo-900 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-green-900 to-gray-700 p-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
@@ -86,7 +86,7 @@ export default function TokenPage() {
                   Maximum 1% of total supply per individual task
                 </li>
                 <li className="flex items-center">
-                  <div className="w-2 h-2 bg-purple-500 rounded-full mr-3"></div>
+                  <div className="w-2 h-2 bg-gray-500 rounded-full mr-3"></div>
                   Smart contract enforced payment releases
                 </li>
               </ul>

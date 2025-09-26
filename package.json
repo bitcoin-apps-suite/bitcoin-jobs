@@ -1,13 +1,12 @@
 {
   "name": "bitcoin-jobs",
-  "version": "1.0.0",
-  "description": "Decentralized Job Marketplace on Bitcoin SV",
-  "main": "dist/index.js",
+  "version": "0.1.0",
+  "description": "Decentralized Job Marketplace on Bitcoin SV by The Bitcoin Corporation LTD",
   "scripts": {
     "dev": "next dev -p 3010",
     "build": "next build",
     "start": "next start -p 3010",
-    "lint": "next lint",
+    "lint": "eslint",
     "type-check": "tsc --noEmit"
   },
   "keywords": [
@@ -15,18 +14,26 @@
     "bsv",
     "blockchain",
     "jobs",
-    "decentralized"
+    "decentralized",
+    "micropayments",
+    "the-bitcoin-corporation"
   ],
-  "author": "The Bitcoin Corporation LTD (UK Company No. 16735102)",
-  "license": "Open-BSV",
+  "author": "The Bitcoin Corporation LTD <ceo@thebitcoincorporation.com>",
+  "license": "Open-BSV-4.0",
+  "copyright": "Copyright (c) 2025 The Bitcoin Corporation LTD (UK Company No. 16735102)",
+  "homepage": "https://bitcoin-jobs.vercel.app",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bitcoin-apps-suite/bitcoin-jobs.git"
+    "url": "git+https://github.com/bitcoin-apps-suite/bitcoin-jobs.git"
   },
+  "bugs": {
+    "url": "https://github.com/bitcoin-apps-suite/bitcoin-jobs/issues"
+  },
+  "private": true,
   "dependencies": {
-    "next": "14.0.0",
-    "react": "^18",
-    "react-dom": "^18",
+    "next": "15.5.3",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
     "typescript": "^5",
     "tailwindcss": "^3.3.0",
     "autoprefixer": "^10.0.1",
@@ -36,9 +43,10 @@
   },
   "devDependencies": {
     "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "eslint": "^8",
-    "eslint-config-next": "14.0.0"
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@eslint/eslintrc": "^3",
+    "eslint": "^9",
+    "eslint-config-next": "15.5.3"
   }
 }

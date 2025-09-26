@@ -1,0 +1,59 @@
+import type { Metadata } from 'next'
+import { Inter } from 'next/font/google'
+import './globals.css'
+import Providers from '@/components/Providers'
+import AppWrapper from '@/components/AppWrapper' 
+import Footer from '@/components/Footer'
+import Taskbar from '@/components/Taskbar'
+import DevBar from '@/components/DevBar'
+import PocBar from '@/components/PocBar'
+
+const inter = Inter({ subsets: ['latin'] })
+
+export const metadata: Metadata = {
+  title: 'Bitcoin CRM',
+  description: 'Decentralized Customer Relationship Management on Bitcoin SV',
+  keywords: ['Bitcoin', 'BSV', 'CRM', 'Blockchain', 'Decentralized'],
+  authors: [{ name: 'The Bitcoin Corporation LTD.' }],
+  creator: 'The Bitcoin Corporation LTD.',
+  publisher: 'The Bitcoin Corporation LTD.',
+  openGraph: {
+    title: 'Bitcoin CRM',
+    description: 'Decentralized Customer Relationship Management on Bitcoin SV',
+    type: 'website',
+  },
+  manifest: '/manifest.json',
+}
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <body className={inter.className} style={{ margin: 0, padding: 0, minHeight: '100vh' }}>
+        <Providers>
+          <PocBar />
+          <Taskbar />
+          <DevBar />
+          <div style={{ 
+            marginTop: '72px', // Space for POC bar (40px) + Taskbar (32px)
+            marginLeft: '260px', // Space for DevBar when open
+            minHeight: 'calc(100vh - 72px)',
+            display: 'flex',
+            flexDirection: 'column',
+            transition: 'margin-left 0.3s ease'
+          }}>
+            <AppWrapper>
+              <main style={{ flex: 1 }}>
+                {children}
+              </main>
+            </AppWrapper>
+            <Footer />
+          </div>
+        </Providers>
+      </body>
+    </html>
+  )
+}
