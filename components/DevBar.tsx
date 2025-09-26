@@ -113,7 +113,7 @@ const DevBar: React.FC<DevBarProps> = ({ onCollapsedChange }) => {
         <div className="dev-bar">
           <div className="dev-bar-header">
             <div className="dev-bar-title">
-              <Music className="dev-bar-logo" />
+              <Briefcase className="dev-bar-logo" />
               <span>Developer Hub</span>
             </div>
             <button className="dev-bar-toggle" aria-label="Collapse sidebar">
@@ -153,7 +153,7 @@ const DevBar: React.FC<DevBarProps> = ({ onCollapsedChange }) => {
         <div className="dev-bar-header">
           {!isCollapsed && (
             <div className="dev-bar-title">
-              <Music className="dev-bar-logo" />
+              <Briefcase className="dev-bar-logo" />
               <span>Developer Hub</span>
             </div>
           )}
@@ -217,7 +217,7 @@ const DevBar: React.FC<DevBarProps> = ({ onCollapsedChange }) => {
 
         {!isCollapsed && (
           <div className="dev-bar-stats">
-            <h4>Music Stats</h4>
+            <h4>Jobs Stats</h4>
             <div className="dev-stat">
               <span className="dev-stat-label">Total Supply</span>
               <span className="dev-stat-value">{stats.totalTokens}</span>
@@ -227,8 +227,8 @@ const DevBar: React.FC<DevBarProps> = ({ onCollapsedChange }) => {
               <span className="dev-stat-value">{stats.distributed}</span>
             </div>
             <div className="dev-stat">
-              <span className="dev-stat-label">Artists</span>
-              <span className="dev-stat-value">{stats.artists}</span>
+              <span className="dev-stat-label">Freelancers</span>
+              <span className="dev-stat-value">{stats.freelancers}</span>
             </div>
             <div className="dev-stat">
               <span className="dev-stat-label">Open Tasks</span>

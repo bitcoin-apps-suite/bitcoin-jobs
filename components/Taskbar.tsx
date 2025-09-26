@@ -246,7 +246,6 @@ export default function Taskbar() {
     { name: 'Bitcoin Pics', color: '#ec4899', url: '#' },
     { name: 'Bitcoin Registry', color: '#f43f5e', url: '#' },
     { name: 'Bitcoin Shares', color: '#f43f5e', url: '#' },
-    { name: 'Bitcoin Spreadsheets', color: '#3b82f6', url: 'https://bitcoin-spreadsheet.vercel.app' },
     { name: 'Bitcoin Video', color: '#65a30d', url: '#' },
     { name: 'Bitcoin Wallet', color: '#f59e0b', url: '#' },
     { name: 'Bitcoin Writer', color: '#ff9500', url: 'https://bitcoin-writer.vercel.app' }
