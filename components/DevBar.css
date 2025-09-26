@@ -5,7 +5,7 @@
   left: 0;
   right: 0;
   height: 32px;
-  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -62,7 +62,7 @@
   top: 60px; /* Below POC banner (32px) and Taskbar (28px) */
   bottom: 0;
   width: 260px;
-  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  background: linear-gradient(135deg, #6b7280 0%, #4b5563 100%);
   border-right: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
   flex-direction: column;
@@ -89,20 +89,20 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  color: #8b5cf6;
+  color: #10b981;
   font-weight: 600;
   font-size: 16px;
 }
 
 .dev-bar-logo {
-  color: #8b5cf6;
+  color: #10b981;
   flex-shrink: 0;
 }
 
 .dev-bar-toggle {
   background: transparent;
   border: none;
-  color: #8b5cf6;
+  color: #10b981;
   cursor: pointer;
   padding: 4px;
   display: flex;
@@ -139,13 +139,13 @@
 
 .dev-bar-item:hover {
   background: rgba(139, 92, 246, 0.1);
-  color: #8b5cf6;
+  color: #10b981;
   transform: translateX(2px);
 }
 
 .dev-bar-item.active {
   background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(124, 58, 237, 0.2));
-  color: #8b5cf6;
+  color: #10b981;
   font-weight: 600;
 }
 
@@ -157,7 +157,7 @@
   transform: translateY(-50%);
   width: 3px;
   height: 70%;
-  background: #8b5cf6;
+  background: #10b981;
   border-radius: 0 2px 2px 0;
 }
 
@@ -166,7 +166,7 @@
 }
 
 .dev-bar-badge {
-  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  background: linear-gradient(135deg, #10b981, #059669);
   color: white;
   font-size: 10px;
   font-weight: 700;
@@ -188,7 +188,7 @@
 }
 
 .dev-bar-stats h4 {
-  color: #8b5cf6;
+  color: #10b981;
   font-size: 12px;
   text-transform: uppercase;
   margin: 0 0 12px 0;
@@ -208,7 +208,7 @@
 }
 
 .dev-stat-value {
-  color: #8b5cf6;
+  color: #10b981;
   font-weight: 600;
 }
 
@@ -226,7 +226,7 @@
 }
 
 .dev-bar-cta p {
-  color: #8b5cf6;
+  color: #10b981;
   font-size: 12px;
   margin: 0 0 8px 0;
   text-transform: uppercase;
@@ -235,7 +235,7 @@
 
 .dev-bar-cta-button {
   display: inline-block;
-  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  background: linear-gradient(135deg, #10b981, #059669);
   color: white;
   padding: 6px 16px;
   border-radius: 4px;

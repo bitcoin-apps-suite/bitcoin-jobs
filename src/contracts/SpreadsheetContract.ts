@@ -42,7 +42,7 @@ export class CellData extends SmartContract {
         value: ByteString,
         dataType: ByteString
     ) {
-        super(...arguments)
+        super()
         this.owner = owner
         this.spreadsheetId = spreadsheetId
         this.row = row
@@ -107,7 +107,7 @@ export class Spreadsheet extends SmartContract {
         maxRows: bigint = 100n,
         maxCols: bigint = 26n // A-Z
     ) {
-        super(...arguments)
+        super()
         this.owner = owner
         this.spreadsheetId = spreadsheetId
         this.title = title

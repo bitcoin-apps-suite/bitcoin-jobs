@@ -66,7 +66,7 @@ export default function TasksPage() {
     }
   ]
 
-  const getPriorityColor = (priority) => {
+  const getPriorityColor = (priority: string) => {
     switch(priority) {
       case 'high': return 'text-red-400 bg-red-500/20'
       case 'medium': return 'text-yellow-400 bg-yellow-500/20'
@@ -75,7 +75,7 @@ export default function TasksPage() {
     }
   }
 
-  const getStatusColor = (status) => {
+  const getStatusColor = (status: string) => {
     switch(status) {
       case 'open': return 'text-blue-400 bg-blue-500/20'
       case 'in-progress': return 'text-yellow-400 bg-yellow-500/20'

@@ -9,7 +9,7 @@ export default function ExchangePage() {
   const [fromCurrency, setFromCurrency] = useState('BSV')
   const [toCurrency, setToCurrency] = useState('bJobs')
 
-  const exchangeRates = {
+  const exchangeRates: Record<string, Record<string, number>> = {
     'BSV': { 'bJobs': 10000, 'USD': 50 },
     'bJobs': { 'BSV': 0.0001, 'USD': 0.005 },
     'USD': { 'BSV': 0.02, 'bJobs': 200 }

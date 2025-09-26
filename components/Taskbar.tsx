@@ -44,35 +44,30 @@ export default function Taskbar() {
 
   const menus: DropdownMenu[] = [
     {
-      label: 'Bitcoin Music',
+      label: 'Bitcoin Jobs',
       items: [
         { label: 'Home', shortcut: '⌘H', action: () => window.location.href = '/' },
         { divider: true },
-        { label: 'About Bitcoin Music', action: () => alert('Bitcoin Music Studio v1.0\n\nProfessional music production on BSV blockchain\n\nBuilt with Next.js, Tone.js, and BSV SDK') },
+        { label: 'About Bitcoin Jobs', action: () => alert('Bitcoin Jobs v1.0\n\nDecentralized Job Marketplace on BSV blockchain\n\nBuilt with Next.js and BSV SDK') },
         { divider: true },
         { label: 'Preferences...', shortcut: '⌘,', action: () => console.log('Preferences') },
-        { label: 'Audio Settings...', action: () => console.log('Audio settings') },
+        { label: 'Job Settings...', action: () => console.log('Job settings') },
         { divider: true },
         { label: session ? 'Sign Out' : 'Sign In', shortcut: '⌘Q', action: session ? () => signOut() : () => document.querySelector<HTMLButtonElement>('[data-signin]')?.click() }
       ]
     },
     {
-      label: 'File',
+      label: 'Jobs',
       items: [
-        { label: 'New Project', shortcut: '⌘N', action: () => console.log('New project') },
-        { label: 'Open Project...', shortcut: '⌘O', action: () => console.log('Open project') },
-        { label: 'Open Recent', action: () => console.log('Recent projects') },
+        { label: 'Post New Job', shortcut: '⌘N', action: () => console.log('New job') },
+        { label: 'Browse Jobs', shortcut: '⌘B', action: () => window.location.href = '/jobs' },
+        { label: 'My Applications', action: () => console.log('My applications') },
         { divider: true },
-        { label: 'Save', shortcut: '⌘S', action: () => console.log('Save project') },
-        { label: 'Save As...', shortcut: '⇧⌘S', action: () => console.log('Save as') },
-        { label: 'Save to Blockchain', action: () => console.log('Save to blockchain') },
+        { label: 'Save Job Draft', shortcut: '⌘S', action: () => console.log('Save job') },
+        { label: 'Import Jobs CSV...', action: () => console.log('Import jobs') },
         { divider: true },
-        { label: 'Import Audio...', shortcut: '⌘I', action: () => document.getElementById('audio-upload')?.click() },
-        { label: 'Import MIDI...', action: () => console.log('Import MIDI') },
-        { divider: true },
-        { label: 'Export Audio...', shortcut: '⌘E', action: () => console.log('Export audio') },
-        { label: 'Export Stems...', action: () => console.log('Export stems') },
-        { label: 'Export MIDI...', action: () => console.log('Export MIDI') }
+        { label: 'Export Jobs...', shortcut: '⌘E', action: () => console.log('Export jobs') },
+        { label: 'Generate Report...', action: () => console.log('Generate report') }
       ]
     },
     {
@@ -94,53 +89,46 @@ export default function Taskbar() {
       ]
     },
     {
-      label: 'Track',
+      label: 'Contracts',
       items: [
-        { label: 'Add Audio Track', shortcut: '⌥⌘A', action: () => console.log('Add audio track') },
-        { label: 'Add MIDI Track', shortcut: '⌥⌘M', action: () => console.log('Add MIDI track') },
-        { label: 'Add Drum Track', shortcut: '⌥⌘D', action: () => console.log('Add drum track') },
-        { label: 'Add Bus Track', action: () => console.log('Add bus') },
+        { label: 'Create Contract', shortcut: '⌥⌘C', action: () => console.log('Create contract') },
+        { label: 'View Contracts', shortcut: '⌥⌘V', action: () => window.location.href = '/contracts' },
+        { label: 'My Contracts', action: () => console.log('My contracts') },
         { divider: true },
-        { label: 'Duplicate Track', shortcut: '⌘D', action: () => console.log('Duplicate track') },
-        { label: 'Delete Track', action: () => console.log('Delete track') },
+        { label: 'Duplicate Contract', shortcut: '⌘D', action: () => console.log('Duplicate contract') },
+        { label: 'Cancel Contract', action: () => console.log('Cancel contract') },
         { divider: true },
-        { label: 'Solo', shortcut: 'S', action: () => console.log('Solo') },
-        { label: 'Mute', shortcut: 'M', action: () => console.log('Mute') },
-        { label: 'Record Enable', shortcut: 'R', action: () => console.log('Record enable') }
+        { label: 'Mark Complete', shortcut: '⌘K', action: () => console.log('Mark complete') },
+        { label: 'Request Review', action: () => console.log('Request review') }
       ]
     },
     {
-      label: 'Audio',
+      label: 'Payments',
       items: [
-        { label: 'Play', shortcut: 'Space', action: () => console.log('Play') },
-        { label: 'Stop', shortcut: '⌘.', action: () => console.log('Stop') },
-        { label: 'Record', shortcut: '⌘R', action: () => console.log('Record') },
+        { label: 'Make Payment', shortcut: '⌘P', action: () => console.log('Make payment') },
+        { label: 'Request Payment', action: () => console.log('Request payment') },
+        { label: 'Payment History', action: () => console.log('Payment history') },
         { divider: true },
-        { label: 'Loop', shortcut: '⌘L', action: () => console.log('Loop') },
-        { label: 'Metronome', shortcut: '⌘M', action: () => console.log('Metronome') },
+        { label: 'Escrow Service', action: () => console.log('Escrow') },
+        { label: 'Milestones', action: () => console.log('Milestones') },
         { divider: true },
-        { label: 'Add Effect...', action: () => console.log('Add effect') },
-        { label: 'Add Instrument...', action: () => console.log('Add instrument') },
-        { divider: true },
-        { label: 'Normalize', action: () => console.log('Normalize') },
-        { label: 'Reverse', action: () => console.log('Reverse') },
-        { label: 'Fade In', action: () => console.log('Fade in') },
-        { label: 'Fade Out', action: () => console.log('Fade out') }
+        { label: 'Withdraw Funds', action: () => console.log('Withdraw') },
+        { label: 'Deposit Funds', action: () => console.log('Deposit') }
       ]
     },
     {
-      label: 'Music',
+      label: 'Marketplace',
       items: [
-        { label: 'Music Studio', shortcut: '⌘M', action: () => window.location.href = '/studio' },
-        { label: 'My Tracks', action: () => window.location.href = '/tracks' },
-        { label: 'Artists', action: () => window.location.href = '/artists' },
-        { label: 'Radio Station', action: () => window.location.href = '/radio' },
+        { label: 'Browse Jobs', shortcut: '⌘M', action: () => window.location.href = '/contracts' },
+        { label: 'Freelancers', action: () => console.log('View freelancers') },
+        { label: 'Companies', action: () => console.log('View companies') },
+        { label: 'Tasks', action: () => window.location.href = '/tasks' },
         { divider: true },
-        { label: 'Upload Track', shortcut: '⌘U', action: () => console.log('Upload track') },
-        { label: 'Create Playlist', action: () => console.log('Create playlist') },
+        { label: 'Post Job', shortcut: '⌘U', action: () => console.log('Post job') },
+        { label: 'Create Profile', action: () => console.log('Create profile') },
         { divider: true },
-        { label: 'Browse Genres', action: () => console.log('Browse genres') },
-        { label: 'Discover', action: () => console.log('Discover music') }
+        { label: 'Browse Skills', action: () => console.log('Browse skills') },
+        { label: 'Trending', action: () => console.log('Trending jobs') }
       ]
     },
     {
@@ -148,8 +136,8 @@ export default function Taskbar() {
       items: [
         { label: 'Arrange View', shortcut: '⌘1', action: () => console.log('Arrange view') },
         { label: 'Mixer View', shortcut: '⌘2', action: () => console.log('Mixer view') },
-        { label: 'Piano Roll', shortcut: '⌘3', action: () => console.log('Piano roll') },
-        { label: 'Drum Editor', shortcut: '⌘4', action: () => console.log('Drum editor') },
+        { label: 'List View', shortcut: '⌘3', action: () => console.log('List view') },
+        { label: 'Grid View', shortcut: '⌘4', action: () => console.log('Grid view') },
         { divider: true },
         { label: 'Show Inspector', shortcut: '⌥⌘I', action: () => console.log('Toggle inspector') },
         { label: 'Show Browser', shortcut: '⌥⌘B', action: () => console.log('Toggle browser') },
@@ -163,32 +151,32 @@ export default function Taskbar() {
       ]
     },
     {
-      label: 'NFT',
+      label: 'Token',
       items: [
-        { label: 'Mint Track as NFT', shortcut: '⌥⌘N', action: () => console.log('Mint NFT') },
-        { label: 'Create Music Collection', action: () => console.log('Create collection') },
+        { label: 'bJobs Token', shortcut: '⌥⌘T', action: () => window.location.href = '/token' },
+        { label: 'Buy Tokens', action: () => window.location.href = '/exchange' },
         { divider: true },
-        { label: 'Set Royalties', action: () => console.log('Set royalties') },
-        { label: 'Configure Splits', action: () => console.log('Configure revenue splits') },
-        { label: 'License Settings', action: () => console.log('License settings') },
+        { label: 'Staking Rewards', action: () => console.log('Staking') },
+        { label: 'Token Distribution', action: () => console.log('Distribution') },
+        { label: 'Governance', action: () => console.log('Governance') },
         { divider: true },
-        { label: 'My Music NFTs', action: () => window.location.href = '/my-nfts' },
-        { label: 'Music Marketplace', action: handleOpenMarketplace },
-        { label: 'Trading History', action: () => window.location.href = '/trading-history' }
+        { label: 'My Balance', action: () => console.log('View balance') },
+        { label: 'Exchange', action: handleOpenExchange },
+        { label: 'Transaction History', action: () => console.log('Transaction history') }
       ]
     },
     {
       label: 'Blockchain',
       items: [
-        { label: 'Register Copyright', action: () => console.log('Register copyright') },
-        { label: 'Timestamp Creation', action: () => console.log('Timestamp on chain') },
+        { label: 'Register Contract', action: () => console.log('Register contract') },
+        { label: 'Timestamp Job', action: () => console.log('Timestamp on chain') },
         { divider: true },
-        { label: 'Encrypt Master', action: () => console.log('Encrypt master') },
+        { label: 'Encrypt Data', action: () => console.log('Encrypt data') },
         { label: 'Set Paywall', action: () => console.log('Set paywall') },
         { label: 'Revenue Share', action: () => console.log('Setup revenue sharing') },
         { divider: true },
         { label: 'Exchange', action: handleOpenExchange },
-        { label: 'Trading Hub', action: () => window.location.href = '/trading' },
+        { label: 'Job Exchange', action: () => window.location.href = '/exchange' },
         { divider: true },
         { label: 'Verify on Chain', action: () => console.log('Verify') },
         { label: 'View on Explorer', href: 'https://whatsonchain.com', target: '_blank' }
@@ -218,10 +206,10 @@ export default function Taskbar() {
         { label: 'Minimize', shortcut: '⌘M', action: () => console.log('Minimize') },
         { label: 'Zoom', action: () => console.log('Zoom') },
         { divider: true },
-        { label: 'Studio', action: () => window.location.href = '/studio' },
+        { label: 'Jobs', action: () => window.location.href = '/contracts' },
         { label: 'Marketplace', action: handleOpenMarketplace },
         { label: 'Exchange', action: handleOpenExchange },
-        { label: 'Library', action: () => window.location.href = '/library' },
+        { label: 'Tasks', action: () => window.location.href = '/tasks' },
         { divider: true },
         { label: 'Bring All to Front', action: () => console.log('Bring to front') }
       ]
@@ -229,17 +217,17 @@ export default function Taskbar() {
     {
       label: 'Help',
       items: [
-        { label: 'Bitcoin Music Help', shortcut: '⌘?', action: () => alert('Bitcoin Music Studio v1.0\n\nProfessional music production and NFT marketplace on BSV') },
+        { label: 'Bitcoin Jobs Help', shortcut: '⌘?', action: () => alert('Bitcoin Jobs v1.0\n\nDecentralized Job Marketplace on BSV') },
         { label: 'Keyboard Shortcuts', action: () => console.log('Show shortcuts') },
-        { label: 'Audio Setup Guide', action: () => console.log('Audio guide') },
+        { label: 'Getting Started', action: () => console.log('Getting started guide') },
         { divider: true },
         { label: 'API Documentation', href: '/api/docs', target: '_blank' },
-        { label: 'Tone.js Docs', href: 'https://tonejs.github.io', target: '_blank' },
+        { label: 'Job Board Docs', href: 'https://docs.bitcoin-jobs.com', target: '_blank' },
         { label: 'BSV SDK Docs', href: 'https://docs.bsvblockchain.org', target: '_blank' },
         { divider: true },
-        { label: 'What\'s New', action: () => alert('New Features:\n\n• Multi-track Recording\n• NFT Minting\n• Real-time Collaboration\n• AI Mastering\n• Revenue Splits') },
+        { label: 'What\'s New', action: () => alert('New Features:\n\n• Smart Contract Jobs\n• Escrow Payments\n• Reputation System\n• Skills Verification\n• Token Rewards') },
         { divider: true },
-        { label: 'Report Issue', href: 'https://github.com/bitcoin-music/issues', target: '_blank' },
+        { label: 'Report Issue', href: 'https://github.com/bitcoin-apps-suite/bitcoin-jobs/issues', target: '_blank' },
         { label: 'Contact Support', href: 'https://twitter.com/b0ase', target: '_blank' }
       ]
     }
@@ -253,7 +241,7 @@ export default function Taskbar() {
     { name: 'Bitcoin Drive', color: '#22c55e', url: 'https://bitcoin-drive.vercel.app' },
     { name: 'Bitcoin Email', color: '#06b6d4', url: '#' },
     { name: 'Bitcoin Exchange', color: '#3b82f6', url: '#', action: handleOpenExchange },
-    { name: 'Bitcoin Music', color: '#8b5cf6', url: '#', current: true },
+    { name: 'Bitcoin Jobs', color: '#10b981', url: '#', current: true },
     { name: 'Bitcoin Paint', color: '#a855f7', url: '#' },
     { name: 'Bitcoin Pics', color: '#ec4899', url: '#' },
     { name: 'Bitcoin Registry', color: '#f43f5e', url: '#' },
@@ -286,7 +274,7 @@ export default function Taskbar() {
         alignItems: 'center',
         justifyContent: 'space-between',
         height: '28px',
-        background: 'linear-gradient(180deg, #8b5cf6 0%, #7c3aed 100%)',
+        background: 'linear-gradient(180deg, #6b7280 0%, #4b5563 100%)',
         borderBottom: '1px solid rgba(0, 0, 0, 0.2)',
         fontSize: '13px',
         fontWeight: '500',
@@ -306,7 +294,7 @@ export default function Taskbar() {
           padding: '0 12px',
           fontSize: '18px',
           fontWeight: '500',
-          color: '#8b5cf6'
+          color: '#10b981'
         }}>
           ₿
         </div>
@@ -325,7 +313,7 @@ export default function Taskbar() {
               padding: '0 12px',
               fontSize: '18px',
               fontWeight: '500',
-              color: '#8b5cf6',
+              color: '#10b981',
               display: 'flex',
               alignItems: 'center',
               height: '28px',
@@ -357,7 +345,7 @@ export default function Taskbar() {
             <div style={{
               padding: '8px 16px',
               fontSize: '12px',
-              color: '#8b5cf6',
+              color: '#10b981',
               fontWeight: '400',
               borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
               marginBottom: '4px'
@@ -588,7 +576,7 @@ export default function Taskbar() {
         style={{ 
           fontSize: '14px',
           fontWeight: '400',
-          color: '#8b5cf6',
+          color: '#10b981',
           background: 'transparent',
           border: 'none',
           cursor: 'pointer',

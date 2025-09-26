@@ -17,10 +17,7 @@ import {
   Package,
   Terminal,
   Activity,
-  Music,
-  Radio,
-  Disc,
-  Headphones
+  Briefcase
 } from 'lucide-react';
 import './DevBar.css';
 
@@ -51,8 +48,8 @@ const DevBar: React.FC<DevBarProps> = ({ onCollapsedChange }) => {
   }, [isCollapsed, onCollapsedChange, mounted]);
 
   useEffect(() => {
-    // Fetch GitHub issue count for bitcoin-music
-    fetch('https://api.github.com/repos/bitcoin-apps-suite/bitcoin-music/issues?state=open')
+    // Fetch GitHub issue count for bitcoin-jobs
+    fetch('https://api.github.com/repos/bitcoin-apps-suite/bitcoin-jobs/issues?state=open')
       .then(res => res.json())
       .then(issues => setIssueCount(Array.isArray(issues) ? issues.length : 0))
       .catch(() => setIssueCount(0));
@@ -70,11 +67,11 @@ const DevBar: React.FC<DevBarProps> = ({ onCollapsedChange }) => {
     { path: '/tasks', icon: Terminal, label: 'Tasks', badge: issueCount > 0 ? String(issueCount) : '0' },
     { path: '/contributors', icon: Users, label: 'Contributors', badge: '2' },
     { path: '/docs', icon: BookOpen, label: 'Documentation' },
-    { path: '/token', icon: DollarSign, label: '$BMUSIC', badge: 'NEW' },
+    { path: '/token', icon: DollarSign, label: '$bJobs', badge: 'NEW' },
     { divider: true },
-    { path: 'https://github.com/bitcoin-apps-suite/bitcoin-music', icon: GitBranch, label: 'GitHub', external: true },
-    { path: 'https://github.com/bitcoin-apps-suite/bitcoin-music/issues', icon: Bug, label: 'Issues', external: true, badge: issueCount > 0 ? String(issueCount) : undefined },
-    { path: 'https://github.com/bitcoin-apps-suite/bitcoin-music/pulls', icon: Code, label: 'Pull Requests', external: true },
+    { path: 'https://github.com/bitcoin-apps-suite/bitcoin-jobs', icon: GitBranch, label: 'GitHub', external: true },
+    { path: 'https://github.com/bitcoin-apps-suite/bitcoin-jobs/issues', icon: Bug, label: 'Issues', external: true, badge: issueCount > 0 ? String(issueCount) : undefined },
+    { path: 'https://github.com/bitcoin-apps-suite/bitcoin-jobs/pulls', icon: Code, label: 'Pull Requests', external: true },
     { divider: true },
     { path: '/api', icon: Package, label: 'API Reference' },
     { path: '/changelog', icon: FileText, label: 'Changelog' },
@@ -84,7 +81,7 @@ const DevBar: React.FC<DevBarProps> = ({ onCollapsedChange }) => {
   const stats = {
     totalTokens: '1,000,000,000',
     distributed: '150,000',
-    artists: '12',
+    freelancers: '12',
     openTasks: '15+'
   };
 
@@ -97,7 +94,7 @@ const DevBar: React.FC<DevBarProps> = ({ onCollapsedChange }) => {
           <div className="dev-poc-content">
             <span className="dev-poc-icon">⚠️</span>
             <span className="dev-poc-title">PROOF OF CONCEPT:</span>
-            <span className="dev-poc-text">This is a demonstration version of Bitcoin Music.</span>
+            <span className="dev-poc-text">This is a demonstration version of Bitcoin Jobs.</span>
             <div className="dev-poc-links">
               <Link href="/studio">Studio</Link>
               <Link href="/community">Community</Link>

@@ -6,7 +6,7 @@ import { Briefcase, FileText, Clock, CheckCircle, AlertCircle, Coins } from 'luc
 export default function ContractsPage() {
   const [activeTab, setActiveTab] = useState('available')
 
-  const contracts = {
+  const contracts: Record<string, any[]> = {
     available: [
       {
         id: 1,
@@ -60,7 +60,7 @@ export default function ContractsPage() {
     ]
   }
 
-  const getDifficultyColor = (difficulty) => {
+  const getDifficultyColor = (difficulty: string) => {
     switch(difficulty) {
       case 'Easy': return 'text-green-400'
       case 'Medium': return 'text-yellow-400'  
@@ -140,7 +140,7 @@ export default function ContractsPage() {
                   
                   {contract.skills && (
                     <div className="flex flex-wrap gap-2 mb-4">
-                      {contract.skills.map((skill) => (
+                      {contract.skills.map((skill: string) => (
                         <span key={skill} className="px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-sm">
                           {skill}
                         </span>

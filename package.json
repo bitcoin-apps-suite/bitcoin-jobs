@@ -31,21 +31,24 @@
   },
   "private": true,
   "dependencies": {
+    "autoprefixer": "^10.0.1",
+    "date-fns": "^4.1.0",
+    "lucide-react": "^0.263.1",
     "next": "15.5.3",
+    "next-auth": "^4.24.5",
+    "postcss": "^8",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "typescript": "^5",
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "^4.0.1",
     "tailwindcss": "^3.3.0",
-    "autoprefixer": "^10.0.1",
-    "postcss": "^8",
-    "lucide-react": "^0.263.1",
-    "next-auth": "^4.24.5"
+    "typescript": "^5"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@eslint/eslintrc": "^3",
     "eslint": "^9",
     "eslint-config-next": "15.5.3"
   }

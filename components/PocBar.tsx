@@ -7,7 +7,7 @@ interface PocBarProps {
   color?: string;
 }
 
-export default function PocBar({ color = '#8b5cf6' }: PocBarProps) {
+export default function PocBar({ color = '#6b7280' }: PocBarProps) {
   return (
     <div 
       className="poc-banner"
@@ -37,7 +37,7 @@ export default function PocBar({ color = '#8b5cf6' }: PocBarProps) {
         <span style={{ opacity: 0.9 }}>This is a demonstration version.</span>
         <div style={{ display: 'flex', gap: '12px', marginLeft: '16px', fontSize: '12px' }}>
           <Link 
-            href="/studio" 
+            href="/contracts" 
             style={{ 
               color: 'white', 
               textDecoration: 'underline',
@@ -45,10 +45,10 @@ export default function PocBar({ color = '#8b5cf6' }: PocBarProps) {
               fontWeight: '400'
             }}
           >
-            Studio
+            Contracts
           </Link>
           <Link 
-            href="/community" 
+            href="/tasks" 
             style={{ 
               color: 'white', 
               textDecoration: 'underline',
@@ -56,7 +56,7 @@ export default function PocBar({ color = '#8b5cf6' }: PocBarProps) {
               fontWeight: '400'
             }}
           >
-            Community
+            Tasks
           </Link>
           <Link 
             href="/token" 
@@ -70,7 +70,7 @@ export default function PocBar({ color = '#8b5cf6' }: PocBarProps) {
             Token
           </Link>
           <a 
-            href="https://github.com/bitcoin-apps-suite/bitcoin-music"
+            href="https://github.com/bitcoin-apps-suite/bitcoin-jobs"
             target="_blank"
             rel="noopener noreferrer"
             style={{ 
