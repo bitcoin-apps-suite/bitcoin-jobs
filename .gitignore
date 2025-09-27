@@ -6,3 +6,8 @@ node_modules/
 .DS_Store
 dist/
 build/
+
+# Screenshots
+*Screenshot*
+Screenshot*
+*.png
