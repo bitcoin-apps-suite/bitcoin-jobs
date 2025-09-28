@@ -59,9 +59,9 @@ export default function Taskbar() {
     {
       label: 'Jobs',
       items: [
-        { label: 'Post New Job', shortcut: '⌘N', action: () => console.log('New job') },
+        { label: 'Post New Job', shortcut: '⌘N', action: () => window.location.href = '/jobs/new' },
         { label: 'Browse Jobs', shortcut: '⌘B', action: () => window.location.href = '/jobs' },
-        { label: 'My Applications', action: () => console.log('My applications') },
+        { label: 'My Applications', action: () => window.location.href = '/applications' },
         { divider: true },
         { label: 'Save Job Draft', shortcut: '⌘S', action: () => console.log('Save job') },
         { label: 'Import Jobs CSV...', action: () => console.log('Import jobs') },
@@ -91,9 +91,9 @@ export default function Taskbar() {
     {
       label: 'Contracts',
       items: [
-        { label: 'Create Contract', shortcut: '⌥⌘C', action: () => console.log('Create contract') },
+        { label: 'Create Contract', shortcut: '⌥⌘C', action: () => window.location.href = '/contracts/new' },
         { label: 'View Contracts', shortcut: '⌥⌘V', action: () => window.location.href = '/contracts' },
-        { label: 'My Contracts', action: () => console.log('My contracts') },
+        { label: 'My Contracts', action: () => window.location.href = '/contracts/my' },
         { divider: true },
         { label: 'Duplicate Contract', shortcut: '⌘D', action: () => console.log('Duplicate contract') },
         { label: 'Cancel Contract', action: () => console.log('Cancel contract') },
@@ -120,8 +120,8 @@ export default function Taskbar() {
       label: 'Marketplace',
       items: [
         { label: 'Browse Jobs', shortcut: '⌘M', action: () => window.location.href = '/contracts' },
-        { label: 'Freelancers', action: () => console.log('View freelancers') },
-        { label: 'Companies', action: () => console.log('View companies') },
+        { label: 'Freelancers', action: () => window.location.href = '/freelancers' },
+        { label: 'Companies', action: () => window.location.href = '/companies' },
         { label: 'Tasks', action: () => window.location.href = '/tasks' },
         { divider: true },
         { label: 'Post Job', shortcut: '⌘U', action: () => console.log('Post job') },
@@ -316,7 +316,7 @@ export default function Taskbar() {
               display: 'flex',
               alignItems: 'center',
               height: '28px',
-              background: showBitcoinSuite ? 'rgba(139, 92, 246, 0.1)' : 'transparent',
+              background: showBitcoinSuite ? 'rgba(255, 255, 255, 0.05)' : 'transparent',
               border: 'none',
               cursor: 'pointer',
               transition: 'background 0.15s ease'
@@ -333,7 +333,7 @@ export default function Taskbar() {
               top: '28px',
               left: 0,
               minWidth: '220px',
-              background: 'rgba(139, 92, 246, 0.95)',
+              background: 'rgba(45, 45, 45, 0.95)',
               backdropFilter: 'blur(16px)',
               border: '1px solid rgba(255, 255, 255, 0.15)',
               borderRadius: '8px',
@@ -460,7 +460,7 @@ export default function Taskbar() {
                 transition: 'background 0.15s ease'
               }}
             >
-              {menu.label === 'Bitcoin Music' ? (
+              {menu.label === 'Bitcoin Jobs' ? (
                 <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                   <BitcoinLogo size={16} />
                   <span>{menu.label}</span>
@@ -475,7 +475,7 @@ export default function Taskbar() {
                 top: '28px',
                 left: 0,
                 minWidth: '200px',
-                background: 'rgba(139, 92, 246, 0.95)',
+                background: 'rgba(45, 45, 45, 0.95)',
                 backdropFilter: 'blur(16px)',
                 border: '1px solid rgba(255, 255, 255, 0.15)',
                 borderRadius: '8px',
@@ -512,7 +512,7 @@ export default function Taskbar() {
                         transition: 'background 0.15s ease'
                       }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.background = 'rgba(139, 92, 246, 0.2)'
+                        e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)'
                       }}
                       onMouseLeave={(e) => {
                         e.currentTarget.style.background = 'transparent'
@@ -546,7 +546,7 @@ export default function Taskbar() {
                         transition: 'background 0.15s ease'
                       }}
                       onMouseEnter={(e) => {
-                        e.currentTarget.style.background = 'rgba(139, 92, 246, 0.2)'
+                        e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)'
                       }}
                       onMouseLeave={(e) => {
                         e.currentTarget.style.background = 'transparent'
@@ -619,7 +619,7 @@ export default function Taskbar() {
       }}>
         {/* GitHub Link */}
         <a
-          href="https://github.com/bitcoin-apps-suite/bitcoin-music"
+          href="https://github.com/bitcoin-apps-suite/bitcoin-jobs"
           target="_blank"
           rel="noopener noreferrer"
           style={{
@@ -628,7 +628,7 @@ export default function Taskbar() {
             transition: 'color 0.15s ease',
             fontWeight: '400'
           }}
-          onMouseEnter={(e) => e.currentTarget.style.color = '#8b5cf6'}
+          onMouseEnter={(e) => e.currentTarget.style.color = '#40e0d0'}
           onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255, 255, 255, 0.8)'}
         >
           GitHub
@@ -643,7 +643,7 @@ export default function Taskbar() {
             transition: 'color 0.15s ease',
             fontWeight: '400'
           }}
-          onMouseEnter={(e) => e.currentTarget.style.color = '#8b5cf6'}
+          onMouseEnter={(e) => e.currentTarget.style.color = '#40e0d0'}
           onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255, 255, 255, 0.8)'}
         >
           Developers
@@ -658,10 +658,10 @@ export default function Taskbar() {
             transition: 'color 0.15s ease',
             fontWeight: '400'
           }}
-          onMouseEnter={(e) => e.currentTarget.style.color = '#8b5cf6'}
+          onMouseEnter={(e) => e.currentTarget.style.color = '#40e0d0'}
           onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255, 255, 255, 0.8)'}
         >
-          $BMusic
+          $bJobs
         </a>
         
         {/* Divider */}
@@ -671,7 +671,7 @@ export default function Taskbar() {
         {session ? (
           <>
             <span>{session.user?.email || 'Connected'}</span>
-            <span style={{ color: '#8b5cf6' }}>●</span>
+            <span style={{ color: '#40e0d0' }}>●</span>
           </>
         ) : (
           <>
@@ -712,7 +712,7 @@ export default function Taskbar() {
               {session ? (
                 <>
                   <span style={{ color: '#ffffff', fontSize: '14px' }}>{session.user?.email || 'Connected'}</span>
-                  <span style={{ color: '#8b5cf6' }}>●</span>
+                  <span style={{ color: '#40e0d0' }}>●</span>
                 </>
               ) : (
                 <>
@@ -769,7 +769,7 @@ export default function Taskbar() {
                           transition: 'background 0.15s ease'
                         }}
                         onTouchStart={(e) => {
-                          e.currentTarget.style.background = 'rgba(139, 92, 246, 0.2)'
+                          e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)'
                         }}
                         onTouchEnd={(e) => {
                           e.currentTarget.style.background = 'transparent'
@@ -798,7 +798,7 @@ export default function Taskbar() {
                           transition: 'background 0.15s ease'
                         }}
                         onTouchStart={(e) => {
-                          e.currentTarget.style.background = 'rgba(139, 92, 246, 0.2)'
+                          e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)'
                         }}
                         onTouchEnd={(e) => {
                           e.currentTarget.style.background = 'transparent'

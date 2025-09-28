@@ -93,16 +93,27 @@ export default function JobsPage() {
   const jobTypes = ['all', 'Full-time', 'Part-time', 'Contract', 'Remote']
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-700 p-6">
+    <div className="min-h-screen p-6">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-white mb-4">Bitcoin Jobs Marketplace</h1>
-          <p className="text-xl text-gray-300">Find your next opportunity in the Bitcoin ecosystem</p>
+          <h1 className="mb-4" style={{ fontSize: 'clamp(3rem, 6vw, 4.5rem)', fontWeight: '200', letterSpacing: '-0.02em', lineHeight: '1.1' }}>
+            Find Your Next <span className="turquoise-gradient">Bitcoin</span> Job
+          </h1>
+          <p className="mb-8" style={{ fontSize: 'clamp(1.1rem, 2.5vw, 1.5rem)', fontWeight: '300', color: 'rgba(255, 255, 255, 0.8)', letterSpacing: '0.01em', lineHeight: '1.4' }}>
+            Discover opportunities in the Bitcoin ecosystem
+          </p>
         </div>
 
         {/* Search and Filters */}
-        <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 mb-8">
+        <div 
+          className="rounded-xl p-6 mb-8 backdrop-blur-sm"
+          style={{
+            background: 'rgba(255, 255, 255, 0.03)',
+            border: '1px solid rgba(255, 255, 255, 0.12)',
+            backdropFilter: 'blur(10px)'
+          }}
+        >
           <div className="flex flex-col md:flex-row gap-4 mb-4">
             <div className="flex-1 relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -111,7 +122,20 @@ export default function JobsPage() {
                 placeholder="Search jobs, companies, or keywords..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-green-400"
+                className="w-full pl-10 pr-4 py-3 border rounded-lg text-white focus:outline-none"
+                style={{
+                  background: 'rgba(255, 255, 255, 0.03)',
+                  borderColor: 'rgba(255, 255, 255, 0.12)',
+                  backdropFilter: 'blur(10px)'
+                }}
+                onFocus={(e) => {
+                  e.currentTarget.style.borderColor = '#40e0d0';
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.06)';
+                }}
+                onBlur={(e) => {
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.12)';
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.03)';
+                }}
               />
             </div>
             
@@ -122,13 +146,37 @@ export default function JobsPage() {
                 placeholder="Location..."
                 value={locationFilter}
                 onChange={(e) => setLocationFilter(e.target.value)}
-                className="w-full md:w-48 pl-10 pr-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-green-400"
+                className="w-full md:w-48 pl-10 pr-4 py-3 border rounded-lg text-white focus:outline-none"
+                style={{
+                  background: 'rgba(255, 255, 255, 0.03)',
+                  borderColor: 'rgba(255, 255, 255, 0.12)',
+                  backdropFilter: 'blur(10px)'
+                }}
+                onFocus={(e) => {
+                  e.currentTarget.style.borderColor = '#40e0d0';
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.06)';
+                }}
+                onBlur={(e) => {
+                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.12)';
+                  e.currentTarget.style.background = 'rgba(255, 255, 255, 0.03)';
+                }}
               />
             </div>
 
             <button
               onClick={() => setShowFilters(!showFilters)}
-              className="px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold flex items-center gap-2 transition-colors"
+              className="px-6 py-3 text-black rounded-lg font-medium flex items-center gap-2 transition-all"
+              style={{
+                background: 'linear-gradient(135deg, #40e0d0 0%, #00ced1 100%)'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-2px)';
+                e.currentTarget.style.boxShadow = '0 10px 30px rgba(64, 224, 208, 0.3)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = 'none';
+              }}
             >
               <Filter className="w-5 h-5" />
               Filters
@@ -143,7 +191,13 @@ export default function JobsPage() {
                 <select
                   value={typeFilter}
                   onChange={(e) => setTypeFilter(e.target.value)}
-                  className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:border-green-400"
+                  className="w-full px-4 py-2 border rounded-lg text-white focus:outline-none"
+                  style={{
+                    background: 'rgba(255, 255, 255, 0.03)',
+                    borderColor: 'rgba(255, 255, 255, 0.12)'
+                  }}
+                  onFocus={(e) => e.currentTarget.style.borderColor = '#40e0d0'}
+                  onBlur={(e) => e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.12)'}
                 >
                   {jobTypes.map(type => (
                     <option key={type} value={type}>{type}</option>
@@ -156,7 +210,13 @@ export default function JobsPage() {
                 <select
                   value={categoryFilter}
                   onChange={(e) => setCategoryFilter(e.target.value)}
-                  className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:border-green-400"
+                  className="w-full px-4 py-2 border rounded-lg text-white focus:outline-none"
+                  style={{
+                    background: 'rgba(255, 255, 255, 0.03)',
+                    borderColor: 'rgba(255, 255, 255, 0.12)'
+                  }}
+                  onFocus={(e) => e.currentTarget.style.borderColor = '#40e0d0'}
+                  onBlur={(e) => e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.12)'}
                 >
                   {categories.map(cat => (
                     <option key={cat} value={cat}>{cat}</option>
@@ -166,7 +226,15 @@ export default function JobsPage() {
 
               <div>
                 <label className="block text-gray-300 mb-2">Payment Type</label>
-                <select className="w-full px-4 py-2 bg-white/10 border border-white/20 rounded-lg text-white focus:outline-none focus:border-green-400">
+                <select 
+                  className="w-full px-4 py-2 border rounded-lg text-white focus:outline-none"
+                  style={{
+                    background: 'rgba(255, 255, 255, 0.03)',
+                    borderColor: 'rgba(255, 255, 255, 0.12)'
+                  }}
+                  onFocus={(e) => e.currentTarget.style.borderColor = '#40e0d0'}
+                  onBlur={(e) => e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.12)'}
+                >
                   <option>All</option>
                   <option>Bitcoin Only</option>
                   <option>Fiat & Bitcoin</option>
@@ -178,9 +246,16 @@ export default function JobsPage() {
 
         {/* Stats */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-          <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+          <div 
+            className="rounded-xl p-6 border backdrop-blur-sm"
+            style={{
+              background: 'rgba(255, 255, 255, 0.03)',
+              borderColor: 'rgba(255, 255, 255, 0.12)',
+              backdropFilter: 'blur(10px)'
+            }}
+          >
             <div className="flex items-center gap-3">
-              <Briefcase className="w-8 h-8 text-green-400" />
+              <Briefcase className="w-8 h-8" style={{ color: '#40e0d0' }} />
               <div>
                 <div className="text-2xl font-bold text-white">{filteredJobs.length}</div>
                 <div className="text-gray-400">Active Jobs</div>
@@ -188,9 +263,16 @@ export default function JobsPage() {
             </div>
           </div>
           
-          <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+          <div 
+            className="rounded-xl p-6 border backdrop-blur-sm"
+            style={{
+              background: 'rgba(255, 255, 255, 0.03)',
+              borderColor: 'rgba(255, 255, 255, 0.12)',
+              backdropFilter: 'blur(10px)'
+            }}
+          >
             <div className="flex items-center gap-3">
-              <Building className="w-8 h-8 text-blue-400" />
+              <Building className="w-8 h-8" style={{ color: '#40e0d0' }} />
               <div>
                 <div className="text-2xl font-bold text-white">125</div>
                 <div className="text-gray-400">Companies</div>
@@ -198,9 +280,16 @@ export default function JobsPage() {
             </div>
           </div>
           
-          <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+          <div 
+            className="rounded-xl p-6 border backdrop-blur-sm"
+            style={{
+              background: 'rgba(255, 255, 255, 0.03)',
+              borderColor: 'rgba(255, 255, 255, 0.12)',
+              backdropFilter: 'blur(10px)'
+            }}
+          >
             <div className="flex items-center gap-3">
-              <Users className="w-8 h-8 text-yellow-400" />
+              <Users className="w-8 h-8" style={{ color: '#40e0d0' }} />
               <div>
                 <div className="text-2xl font-bold text-white">3,450</div>
                 <div className="text-gray-400">Freelancers</div>
@@ -208,9 +297,16 @@ export default function JobsPage() {
             </div>
           </div>
           
-          <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+          <div 
+            className="rounded-xl p-6 border backdrop-blur-sm"
+            style={{
+              background: 'rgba(255, 255, 255, 0.03)',
+              borderColor: 'rgba(255, 255, 255, 0.12)',
+              backdropFilter: 'blur(10px)'
+            }}
+          >
             <div className="flex items-center gap-3">
-              <Globe className="w-8 h-8 text-purple-400" />
+              <Globe className="w-8 h-8" style={{ color: '#40e0d0' }} />
               <div>
                 <div className="text-2xl font-bold text-white">52</div>
                 <div className="text-gray-400">Countries</div>
@@ -222,12 +318,32 @@ export default function JobsPage() {
         {/* Job Listings */}
         <div className="space-y-4">
           {filteredJobs.map(job => (
-            <div key={job.id} className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20 hover:bg-white/15 transition-colors">
+            <div 
+              key={job.id} 
+              className="rounded-xl p-6 border transition-all backdrop-blur-sm cursor-pointer"
+              style={{
+                background: 'rgba(255, 255, 255, 0.03)',
+                borderColor: 'rgba(255, 255, 255, 0.12)',
+                backdropFilter: 'blur(10px)'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.06)';
+                e.currentTarget.style.borderColor = 'rgba(64, 224, 208, 0.3)';
+                e.currentTarget.style.transform = 'translateY(-2px)';
+                e.currentTarget.style.boxShadow = '0 10px 30px rgba(64, 224, 208, 0.15)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.03)';
+                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.12)';
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = 'none';
+              }}
+            >
               <div className="flex flex-col md:flex-row justify-between">
                 <div className="flex-1">
                   <div className="flex items-start justify-between mb-3">
                     <div>
-                      <h3 className="text-xl font-bold text-white mb-1">{job.title}</h3>
+                      <h3 className="text-xl font-light text-white mb-1" style={{ letterSpacing: '-0.01em' }}>{job.title}</h3>
                       <div className="flex items-center gap-4 text-gray-300">
                         <span className="flex items-center gap-1">
                           <Building className="w-4 h-4" />
@@ -244,17 +360,33 @@ export default function JobsPage() {
                       </div>
                     </div>
                     {job.bitcoin && (
-                      <div className="bg-orange-500/20 text-orange-300 px-3 py-1 rounded-full text-sm font-semibold">
+                      <div 
+                        className="px-3 py-1 rounded-full text-sm font-medium"
+                        style={{
+                          background: 'rgba(64, 224, 208, 0.2)',
+                          color: '#40e0d0',
+                          border: '1px solid rgba(64, 224, 208, 0.3)'
+                        }}
+                      >
                         ₿ Bitcoin
                       </div>
                     )}
                   </div>
 
-                  <p className="text-gray-300 mb-4">{job.description}</p>
+                  <p className="mb-4" style={{ color: 'rgba(255, 255, 255, 0.7)', fontWeight: '300' }}>{job.description}</p>
 
                   <div className="flex flex-wrap gap-2 mb-4">
                     {job.skills.map(skill => (
-                      <span key={skill} className="px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-sm">
+                      <span 
+                        key={skill} 
+                        className="px-3 py-1 rounded-full text-sm"
+                        style={{
+                          background: 'rgba(64, 224, 208, 0.1)',
+                          color: '#40e0d0',
+                          border: '1px solid rgba(64, 224, 208, 0.3)',
+                          fontWeight: '400'
+                        }}
+                      >
                         {skill}
                       </span>
                     ))}
@@ -278,11 +410,36 @@ export default function JobsPage() {
                     <div className="flex gap-2">
                       <Link 
                         href={`/jobs/${job.id}`}
-                        className="px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-colors"
+                        className="px-4 py-2 border text-white rounded-lg transition-all"
+                        style={{
+                          background: 'rgba(255, 255, 255, 0.03)',
+                          borderColor: 'rgba(255, 255, 255, 0.2)'
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.background = 'rgba(255, 255, 255, 0.06)';
+                          e.currentTarget.style.borderColor = '#40e0d0';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.background = 'rgba(255, 255, 255, 0.03)';
+                          e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                        }}
                       >
                         View Details
                       </Link>
-                      <button className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold transition-colors">
+                      <button 
+                        className="px-4 py-2 text-black rounded-lg font-medium transition-all"
+                        style={{
+                          background: 'linear-gradient(135deg, #40e0d0 0%, #00ced1 100%)'
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.transform = 'translateY(-1px)';
+                          e.currentTarget.style.boxShadow = '0 5px 15px rgba(64, 224, 208, 0.3)';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.transform = 'translateY(0)';
+                          e.currentTarget.style.boxShadow = 'none';
+                        }}
+                      >
                         Apply Now
                       </button>
                     </div>
@@ -296,7 +453,21 @@ export default function JobsPage() {
         {/* Load More */}
         {filteredJobs.length > 0 && (
           <div className="text-center mt-8">
-            <button className="px-8 py-3 bg-white/10 hover:bg-white/20 text-white rounded-lg font-semibold transition-colors">
+            <button 
+              className="px-8 py-3 border text-white rounded-lg font-medium transition-all"
+              style={{
+                background: 'rgba(255, 255, 255, 0.03)',
+                borderColor: 'rgba(255, 255, 255, 0.2)'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.06)';
+                e.currentTarget.style.borderColor = '#40e0d0';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.03)';
+                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+              }}
+            >
               Load More Jobs
             </button>
           </div>
