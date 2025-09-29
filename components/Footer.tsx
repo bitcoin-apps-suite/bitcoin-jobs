@@ -38,6 +38,36 @@ export default function Footer() {
         }}>
           Building the future of jobs on Bitcoin BSV
         </div>
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px',
+          marginTop: '15px',
+          padding: '8px 16px',
+          background: 'rgba(255, 255, 255, 0.05)',
+          borderRadius: '8px',
+          border: '1px solid rgba(64, 224, 208, 0.2)'
+        }}>
+          <svg 
+            width="20" 
+            height="20" 
+            viewBox="0 0 24 24" 
+            fill="none"
+            style={{ color: '#40e0d0' }}
+          >
+            <path 
+              fill="currentColor" 
+              d="M24 11.7661L11.883 24L0 11.7661L11.883 0L24 11.7661Z"
+            />
+          </svg>
+          <span style={{
+            fontSize: '12px',
+            color: 'rgba(255, 255, 255, 0.7)',
+            fontWeight: '500'
+          }}>
+            Deployed on Vercel
+          </span>
+        </div>
       </div>
     </footer>
   )

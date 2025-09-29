@@ -17,7 +17,14 @@ import {
   History,
   CheckCircle,
   ListTodo,
-  Briefcase
+  Briefcase,
+  Search,
+  DollarSign,
+  Building2,
+  Award,
+  TrendingUp,
+  Gavel,
+  ShoppingCart
 } from 'lucide-react'
 
 export default function DevSidebar() {
@@ -54,25 +61,60 @@ export default function DevSidebar() {
     localStorage.setItem('devSidebarCollapsed', newState.toString())
   }
 
-  const menuItems = [
-    { path: '/contracts', icon: Briefcase, label: 'Contracts' },
-    { path: '/tasks', icon: ListTodo, label: 'Tasks' },
-    { path: '/contributors', icon: Users, label: 'Contributors' },
-    { path: '/docs', icon: BookOpen, label: 'Documentation' },
-    { path: '/token', icon: Coins, label: '$bOS Token' },
+  const menuItems: Array<{
+    path?: string;
+    icon?: any;
+    label?: string;
+    badge?: string | number | null;
+    divider?: boolean;
+    section?: string;
+    external?: boolean;
+  }> = [
+    // Token & NFT Features at top
+    { path: '/token', icon: Coins, label: '$BJOBS Token', badge: 'NEW' },
+    { path: '/exchange', icon: TrendingUp, label: 'Jobs Exchange' },
+    { path: '/marketplace', icon: ShoppingCart, label: 'NFT Marketplace' },
+    
+    // Job Seekers Section
     { divider: true },
-    { path: 'https://github.com/bitcoin-apps-suite/bitcoin-OS', icon: Github, label: 'Repository', external: true },
-    { path: 'https://github.com/bitcoin-apps-suite/bitcoin-OS/issues', icon: FileCode, label: 'Issues', badge: issueCount, external: true },
-    { path: 'https://github.com/bitcoin-apps-suite/bitcoin-OS/pulls', icon: GitPullRequest, label: 'Pull Requests', external: true },
+    { section: 'JOB SEEKERS' },
+    { path: '/', icon: Search, label: 'Find Jobs' },
+    { path: '/freelancers', icon: Users, label: 'Freelancer Board' },
+    { path: '/docs', icon: BookOpen, label: 'Career Guides' },
+    
+    // Employers Section
+    { divider: true },
+    { section: 'EMPLOYERS' },
+    { path: '/jobs/new', icon: Briefcase, label: 'Post Job Offer' },
+    { path: '/contracts/new', icon: Gavel, label: 'Create Contract' },
+    { path: '/companies', icon: Building2, label: 'Company Directory' },
+    
+    // Blockchain & NFT Section
+    { divider: true },
+    { section: 'BLOCKCHAIN' },
+    { path: '/contracts', icon: FileCode, label: 'Smart Contracts' },
+    { path: '/contracts/my', icon: DollarSign, label: 'My Contracts' },
+    { path: '/exchange', icon: TrendingUp, label: 'Jobs Exchange' },
+    
+    // Developers Section
+    { divider: true },
+    { section: 'DEVELOPERS' },
+    { path: '/tasks', icon: ListTodo, label: 'Development Tasks' },
+    { path: '/contributors', icon: Users, label: 'Contributors' },
+    { path: '/applications', icon: Award, label: 'Grant Applications' },
+    
+    // System
     { divider: true },
     { path: '/api', icon: FileText, label: 'API Reference' },
+    { path: 'https://github.com/bitcoin-apps-suite/bitcoin-jobs', icon: Github, label: 'GitHub', external: true },
     { path: '/changelog', icon: History, label: 'Changelog' },
-    { path: '/status', icon: CheckCircle, label: 'Status' },
+    { path: '/status', icon: CheckCircle, label: 'Status', badge: 'OK' }
   ]
 
   const stats = {
-    supply: '1,000,000,000,000',
-    distributed: '12,456,789',
+    totalJobs: '1,250',
+    activeJobs: '342',
+    jobsNFTs: '1,250',
     contributors: '42',
     openTasks: issueCount || 0
   }
@@ -85,8 +127,8 @@ export default function DevSidebar() {
       <div className="p-4 border-b border-gray-800 flex items-center justify-between">
         {!sidebarCollapsed && (
           <div className="flex items-center gap-2">
-            <Monitor className="w-5 h-5 text-bitcoin-orange" />
-            <span className="font-semibold text-white">Developer Hub</span>
+            <Briefcase className="w-5 h-5 text-bitcoin-orange" />
+            <span className="font-semibold text-white">Jobs Hub</span>
           </div>
         )}
         <button
@@ -103,6 +145,14 @@ export default function DevSidebar() {
         {menuItems.map((item, index) => {
           if (item.divider) {
             return <div key={index} className="my-2 border-t border-gray-800" />
+          }
+
+          if (item.section) {
+            return !sidebarCollapsed ? (
+              <div key={index} className="px-4 py-2 text-xs text-gray-500 uppercase tracking-wider font-semibold">
+                {item.section}
+              </div>
+            ) : null;
           }
 
           const Icon = item.icon!
@@ -166,15 +216,19 @@ export default function DevSidebar() {
       {/* Quick Stats */}
       {!sidebarCollapsed && (
         <div className="p-4 border-t border-gray-800">
-          <h4 className="text-xs text-gray-500 uppercase tracking-wider mb-3">bOS Stats</h4>
+          <h4 className="text-xs text-gray-500 uppercase tracking-wider mb-3">Platform Stats</h4>
           <div className="space-y-2">
             <div>
-              <div className="text-xs text-gray-400">Total Supply</div>
-              <div className="text-sm font-mono text-white">{stats.supply}</div>
+              <div className="text-xs text-gray-400">Total Jobs Posted</div>
+              <div className="text-sm font-mono text-white">{stats.totalJobs}</div>
             </div>
             <div>
-              <div className="text-xs text-gray-400">Distributed</div>
-              <div className="text-sm font-mono text-white">{stats.distributed}</div>
+              <div className="text-xs text-gray-400">Active Job Offers</div>
+              <div className="text-sm font-mono text-white">{stats.activeJobs}</div>
+            </div>
+            <div>
+              <div className="text-xs text-gray-400">Job NFTs Minted</div>
+              <div className="text-sm font-mono text-white">{stats.jobsNFTs}</div>
             </div>
             <div>
               <div className="text-xs text-gray-400">Contributors</div>
@@ -192,7 +246,7 @@ export default function DevSidebar() {
       {!sidebarCollapsed && (
         <div className="p-4 border-t border-gray-800">
           <button className="w-full bg-bitcoin-orange text-black py-2 px-4 rounded-lg hover:bg-bitcoin-orange/90 transition-colors font-medium text-sm">
-            Start Contributing
+            Post Your First Job
           </button>
         </div>
       )}

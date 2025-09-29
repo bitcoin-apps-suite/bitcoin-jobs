@@ -10,7 +10,7 @@ interface PocBarProps {
 export default function PocBar({ color = '#40e0d0' }: PocBarProps) {
   return (
     <div 
-      className="poc-banner"
+      className="bitcoin-jobs-poc-bar"
       style={{
         position: 'fixed',
         top: 0, // Above taskbar
@@ -18,10 +18,11 @@ export default function PocBar({ color = '#40e0d0' }: PocBarProps) {
         right: 0,
         height: '32px',
         backgroundColor: color,
+        background: `linear-gradient(135deg, ${color}, #20b2aa) !important`,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'flex-start', // Left aligned
-        zIndex: 9999,
+        zIndex: 10001,
         fontSize: '13px',
         fontWeight: '500',
         color: 'white',
