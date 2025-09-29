@@ -78,25 +78,32 @@ export default function ExchangePage() {
                 <select 
                   value={fromCurrency}
                   onChange={(e) => setFromCurrency(e.target.value)}
-                  className="w-full bg-transparent text-white mb-3 focus:outline-none"
+                  className="w-full text-white mb-3 focus:outline-none cursor-pointer"
                   style={{
                     fontWeight: '300',
-                    background: 'transparent'
+                    background: 'rgba(26, 26, 26, 0.8)',
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    borderRadius: '6px',
+                    padding: '8px 12px',
+                    fontSize: '14px'
                   }}
                 >
-                  <option value="BSV">BSV - Bitcoin SV</option>
-                  <option value="bJobs">bJobs - Bitcoin Jobs Token</option>
-                  <option value="USD">USD - US Dollar</option>
+                  <option value="BSV" style={{ background: '#1a1a1a' }}>BSV - Bitcoin SV</option>
+                  <option value="bJobs" style={{ background: '#1a1a1a' }}>bJobs - Bitcoin Jobs Token</option>
+                  <option value="USD" style={{ background: '#1a1a1a' }}>USD - US Dollar</option>
                 </select>
                 <input
                   type="number"
                   value={fromAmount}
                   onChange={(e) => setFromAmount(e.target.value)}
                   placeholder="0.00"
-                  className="w-full bg-transparent text-white text-2xl focus:outline-none"
+                  className="w-full text-white text-2xl focus:outline-none"
                   style={{
                     fontWeight: '300',
-                    background: 'transparent'
+                    background: 'transparent',
+                    borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+                    paddingBottom: '4px',
+                    marginTop: '8px'
                   }}
                 />
               </div>
@@ -115,17 +122,27 @@ export default function ExchangePage() {
                 <select 
                   value={toCurrency}
                   onChange={(e) => setToCurrency(e.target.value)}
-                  className="w-full bg-transparent text-white mb-3 focus:outline-none"
+                  className="w-full text-white mb-3 focus:outline-none cursor-pointer"
                   style={{
                     fontWeight: '300',
-                    background: 'transparent'
+                    background: 'rgba(26, 26, 26, 0.8)',
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    borderRadius: '6px',
+                    padding: '8px 12px',
+                    fontSize: '14px'
                   }}
                 >
-                  <option value="bJobs">bJobs - Bitcoin Jobs Token</option>
-                  <option value="BSV">BSV - Bitcoin SV</option>
-                  <option value="USD">USD - US Dollar</option>
+                  <option value="bJobs" style={{ background: '#1a1a1a' }}>bJobs - Bitcoin Jobs Token</option>
+                  <option value="BSV" style={{ background: '#1a1a1a' }}>BSV - Bitcoin SV</option>
+                  <option value="USD" style={{ background: '#1a1a1a' }}>USD - US Dollar</option>
                 </select>
-                <div className="w-full text-white text-2xl" style={{ fontWeight: '300' }}>
+                <div className="w-full text-white text-2xl" style={{ 
+                  fontWeight: '300',
+                  borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+                  paddingBottom: '4px',
+                  marginTop: '8px',
+                  minHeight: '36px'
+                }}>
                   {toAmount || '0.00'}
                 </div>
               </div>
