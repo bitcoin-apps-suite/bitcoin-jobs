@@ -6,6 +6,7 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: false,
   },
+  outputFileTracingRoot: '/Users/b0ase/Projects/bitcoin-OS/apps/bitcoin-jobs',
 }
 
 module.exports = nextConfig

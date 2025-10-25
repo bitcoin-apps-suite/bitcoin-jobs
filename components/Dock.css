@@ -82,9 +82,9 @@
   bottom: -8px;
   width: 4px;
   height: 4px;
-  background: #40e0d0;
+  background: #3b82f6;
   border-radius: 50%;
-  box-shadow: 0 0 4px rgba(64, 224, 208, 0.5);
+  box-shadow: 0 0 4px rgba(59, 130, 246, 0.5);
 }
 
 .dock-app.disabled {
@@ -118,7 +118,7 @@
   bottom: -6px;
   width: 4px;
   height: 4px;
-  background: #40e0d0;
+  background: #3b82f6;
   border-radius: 50%;
   animation: pulse 2s infinite;
 }

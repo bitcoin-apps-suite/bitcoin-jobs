@@ -30,7 +30,7 @@ export default function Taskbar({ openWindows, activeWindow, onWindowClick }: Ta
     { name: 'Bitcoin Drive', icon: HardDrive, color: 'text-green-500', url: 'https://bitcoin-drive.vercel.app' },
     { name: 'Bitcoin Calendar', icon: Calendar, color: 'text-gray-500', url: 'https://bitcoin-calendar.vercel.app', disabled: true },
     { name: 'Bitcoin Search', icon: Search, color: 'text-gray-500', url: 'https://bitcoin-search.vercel.app', disabled: true },
-    { name: 'Bitcoin Jobs', icon: Briefcase, color: 'text-emerald-400', url: 'https://bitcoin-jobs.vercel.app' },
+    { id: 'bitcoin-jobs', name: 'Bitcoin Jobs', icon: Briefcase, color: 'text-emerald-400', url: 'https://bitcoin-jobs.vercel.app', isImage: true },
     { name: 'Bitcoin Shares', icon: Share2, color: 'text-gray-500', url: 'https://bitcoin-shares.vercel.app', disabled: true },
   ]
 
@@ -82,6 +82,10 @@ export default function Taskbar({ openWindows, activeWindow, onWindowClick }: Ta
                 {app.id === 'bapps-store' ? (
                   <div className="w-6 h-6 rounded overflow-hidden">
                     <img src="/bapps-icon.jpg" alt="BAPPS" className="w-full h-full object-cover" />
+                  </div>
+                ) : app.id === 'bitcoin-jobs' ? (
+                  <div className="w-6 h-6 rounded overflow-hidden">
+                    <img src="/bitcoin-jobs-icon.jpg" alt="Bitcoin Jobs" className="w-full h-full object-cover" />
                   </div>
                 ) : (
                   <Icon className={`w-5 h-5 ${app.color}`} />

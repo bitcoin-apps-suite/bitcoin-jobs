@@ -1,7 +1,8 @@
 'use client'
 
 import React from 'react'
-import { TopMenuBar, DevSidebar, Dock, BitcoinOSProvider } from '@bitcoin-os/bridge'
+import { TopMenuBar, DevSidebar, BitcoinOSProvider } from '@bitcoin-os/bridge'
+// import { Dock } from '@bitcoin-os/bridge' // Commented out - causing undefined reference
 import ProofOfConceptBar from './ProofOfConceptBar'
 
 interface BitcoinOSIntegrationProps {
@@ -59,7 +60,7 @@ export default function BitcoinOSIntegration({ children }: BitcoinOSIntegrationP
         docsUrl="/docs"
       />
       {children}
-      <Dock context={appContext} />
+      {/* <Dock context={appContext} /> */}
     </div>
   )
 }

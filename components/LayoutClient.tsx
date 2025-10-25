@@ -6,7 +6,7 @@ import Taskbar from '@/components/Taskbar'
 import DevBar from '@/components/DevBar'
 import AppWrapper from '@/components/AppWrapper'
 import Footer from '@/components/Footer'
-import Dock from '@/components/Dock'
+import SimpleDock from '@/components/SimpleDock'
 
 interface LayoutClientProps {
   children: React.ReactNode
@@ -52,7 +52,7 @@ export default function LayoutClient({ children }: LayoutClientProps) {
           </AppWrapper>
           <Footer />
         </div>
-        <Dock />
+        <SimpleDock />
       </>
     )
   }
@@ -78,7 +78,7 @@ export default function LayoutClient({ children }: LayoutClientProps) {
         </AppWrapper>
         <Footer />
       </div>
-      <Dock />
+      <SimpleDock />
     </>
   )
 }
