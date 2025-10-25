@@ -47,6 +47,7 @@
     "postcss": "^8",
     "react": "19.1.0",
     "react-dom": "19.1.0",
+    "react-feather": "^2.0.10",
     "react-icons": "^5.5.0",
     "react-markdown": "^10.1.0",
     "remark-gfm": "^4.0.1",
