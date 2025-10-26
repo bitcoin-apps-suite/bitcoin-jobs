@@ -27,7 +27,6 @@ interface BAppsMarketplaceProps {
 }
 
 const BAppsMarketplace: React.FC<BAppsMarketplaceProps> = ({ onSelectApp, initialMode = 'earn' }) => {
-  const [hoveredApp, setHoveredApp] = useState<string | null>(null)
 
   const bApps: BApp[] = [
     { id: 'bitcoin-3d', name: '3D', icon: <Box size={16} />, color: '#8B5CF6', makerTitle: 'Need 3D Work', takerTitle: 'Create 3D', makerDescription: 'Post 3D jobs', takerDescription: 'Model for money' },
@@ -72,14 +71,12 @@ const BAppsMarketplace: React.FC<BAppsMarketplaceProps> = ({ onSelectApp, initia
         {bApps.map((app) => (
           <button
             key={app.id}
-            className="group relative bg-gray-900/30 border border-gray-800 rounded-lg p-2 hover:border-turquoise/50 transition-all"
+            className="group relative bg-gray-900/30 border border-gray-800 rounded-lg p-2"
             onClick={() => onSelectApp(app.id, initialMode === 'post' ? 'maker' : 'taker')}
-            onMouseEnter={() => setHoveredApp(app.id)}
-            onMouseLeave={() => setHoveredApp(null)}
           >
             <div className="flex flex-col items-center">
               <div 
-                className="p-1.5 rounded-lg mb-1 transition-transform group-hover:scale-110"
+                className="p-1.5 rounded-lg mb-1 transition-colors"
                 style={{ backgroundColor: `${app.color}20`, color: app.color }}
               >
                 {app.icon}
@@ -87,11 +84,6 @@ const BAppsMarketplace: React.FC<BAppsMarketplaceProps> = ({ onSelectApp, initia
               <span className="text-xs font-medium text-white leading-tight">
                 {app.name}
               </span>
-              {hoveredApp === app.id && (
-                <span className="text-xs text-gray-400 mt-1">
-                  {initialMode === 'post' ? app.makerDescription : app.takerDescription}
-                </span>
-              )}
             </div>
           </button>
         ))}
