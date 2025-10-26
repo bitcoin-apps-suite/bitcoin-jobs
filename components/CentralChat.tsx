@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { Send, Sparkles, Briefcase, DollarSign, FileText, Users } from 'lucide-react'
 import BAppsMarketplace from './BAppsMarketplace'
+import { useHover } from './HoverContext'
 
 interface Message {
   id: number
@@ -122,6 +123,7 @@ const CentralChat = () => {
 
   return (
     <div className="central-chat">
+      
       {!hasInteracted ? (
         // Initial state - Grok/Gemini style
         <div className="chat-welcome">
@@ -134,14 +136,14 @@ const CentralChat = () => {
           <div className="welcome-title-toggle">
             <button 
               onClick={() => setMode('offer')}
-              className={`title-option ${mode === 'offer' ? 'active' : ''}`}
+              className={`title-option title-option-hover ${mode === 'offer' ? 'active' : ''}`}
             >
               Offer a Job
             </button>
             <span className="title-divider">or</span>
             <button 
               onClick={() => setMode('find')}
-              className={`title-option ${mode === 'find' ? 'active' : ''}`}
+              className={`title-option title-option-hover ${mode === 'find' ? 'active' : ''}`}
             >
               Find a Job
             </button>
@@ -154,7 +156,7 @@ const CentralChat = () => {
               onChange={(e) => setInputText(e.target.value)}
               onKeyPress={handleKeyPress}
               placeholder="Ask about jobs, payments, or smart contracts..."
-              className="main-input"
+              className="main-input main-input-hover"
               autoFocus
             />
             <button
@@ -274,6 +276,7 @@ const CentralChat = () => {
           letter-spacing: 1px;
         }
 
+
         .welcome-title-toggle {
           font-size: 2.5rem;
           font-weight: 300;
@@ -291,6 +294,13 @@ const CentralChat = () => {
           border: 2px solid transparent;
           color: rgba(255, 255, 255, 0.4);
           cursor: pointer;
+        }
+        
+        .title-option-hover {
+          color: var(--dock-hover-color, rgba(255, 255, 255, 0.4));
+          background: color-mix(in srgb, var(--dock-hover-color) 20%, transparent);
+          border-color: var(--dock-hover-color, transparent);
+          transition: all 0.3s ease;
           transition: all 0.3s;
           padding: 0.5rem 1.5rem;
           font-size: inherit;
@@ -347,6 +357,11 @@ const CentralChat = () => {
 
         .main-input::placeholder {
           color: rgba(255, 255, 255, 0.4);
+          transition: color 0.3s ease;
+        }
+        
+        .main-input-hover::placeholder {
+          color: var(--dock-hover-color, rgba(255, 255, 255, 0.4));
         }
 
         .send-button {
@@ -599,7 +614,15 @@ const CentralChat = () => {
       
       {/* BApps Marketplace below chat */}
       <div className="bapps-section">
-        <BAppsMarketplace onSelectApp={handleAppSelect} initialMode={mode === 'offer' ? 'post' : 'earn'} />
+        {(() => {
+          const marketplaceMode = mode === 'offer' ? 'post' : 'earn';
+          return (
+            <BAppsMarketplace 
+              onSelectApp={handleAppSelect} 
+              initialMode={marketplaceMode} 
+            />
+          );
+        })()}
       </div>
       
       <style jsx>{`

@@ -6,7 +6,8 @@ import Taskbar from '@/components/Taskbar'
 import DevBar from '@/components/DevBar'
 import AppWrapper from '@/components/AppWrapper'
 import Footer from '@/components/Footer'
-import SimpleDock from '@/components/SimpleDock'
+import DockManager from '@/components/DockManager'
+import { HoverProvider } from '@/components/HoverContext'
 
 interface LayoutClientProps {
   children: React.ReactNode
@@ -33,7 +34,7 @@ export default function LayoutClient({ children }: LayoutClientProps) {
   if (!mounted) {
     // Return a placeholder with the default collapsed state during SSR
     return (
-      <>
+      <HoverProvider>
         <PocBar />
         <Taskbar />
         <DevBar />
@@ -52,13 +53,13 @@ export default function LayoutClient({ children }: LayoutClientProps) {
           </AppWrapper>
           <Footer />
         </div>
-        <SimpleDock />
-      </>
+        <DockManager currentApp="bitcoin-jobs" />
+      </HoverProvider>
     )
   }
 
   return (
-    <>
+    <HoverProvider>
       <PocBar />
       <Taskbar />
       <DevBar onCollapsedChange={handleDevBarCollapsedChange} />
@@ -78,7 +79,7 @@ export default function LayoutClient({ children }: LayoutClientProps) {
         </AppWrapper>
         <Footer />
       </div>
-      <SimpleDock />
-    </>
+      <DockManager currentApp="bitcoin-jobs" />
+    </HoverProvider>
   )
 }

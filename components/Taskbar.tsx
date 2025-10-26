@@ -1,9 +1,8 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import { useSession, signOut } from 'next-auth/react'
 import { Menu, X } from 'lucide-react'
-import BitcoinLogo from './BitcoinLogo'
+import { useSession, signOut } from 'next-auth/react'
 
 interface DropdownItem {
   label?: string
@@ -34,14 +33,6 @@ export default function Taskbar() {
   const [showMobileMenu, setShowMobileMenu] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
 
-  const handleOpenExchange = () => {
-    window.dispatchEvent(new CustomEvent('openExchange'))
-  }
-
-  const handleOpenMarketplace = () => {
-    window.location.href = '/marketplace'
-  }
-
   const menus: DropdownMenu[] = [
     {
       label: 'Bitcoin Jobs',
@@ -57,17 +48,14 @@ export default function Taskbar() {
       ]
     },
     {
-      label: 'Jobs',
+      label: 'File',
       items: [
-        { label: 'Post New Job', shortcut: '⌘N', action: () => window.location.href = '/jobs/new' },
-        { label: 'Browse Jobs', shortcut: '⌘B', action: () => window.location.href = '/jobs' },
-        { label: 'My Applications', action: () => window.location.href = '/applications' },
+        { label: 'New Job Post', shortcut: '⌘N', action: () => window.location.href = '/post' },
+        { label: 'Open Applications...', shortcut: '⌘O', action: () => window.location.href = '/applications' },
+        { label: 'Recent Jobs', action: () => console.log('Recent jobs') },
         { divider: true },
-        { label: 'Save Job Draft', shortcut: '⌘S', action: () => console.log('Save job') },
-        { label: 'Import Jobs CSV...', action: () => console.log('Import jobs') },
-        { divider: true },
-        { label: 'Export Jobs...', shortcut: '⌘E', action: () => console.log('Export jobs') },
-        { label: 'Generate Report...', action: () => console.log('Generate report') }
+        { label: 'Save Job', shortcut: '⌘S', action: () => console.log('Save job') },
+        { label: 'Export Resume...', shortcut: '⌘E', action: () => console.log('Export resume') }
       ]
     },
     {
@@ -82,122 +70,45 @@ export default function Taskbar() {
         { label: 'Delete', shortcut: '⌫', action: () => console.log('Delete') },
         { divider: true },
         { label: 'Select All', shortcut: '⌘A', action: () => document.execCommand('selectAll') },
-        { label: 'Deselect All', shortcut: '⇧⌘A', action: () => console.log('Deselect all') },
-        { divider: true },
-        { label: 'Split at Playhead', shortcut: '⌘T', action: () => console.log('Split') },
-        { label: 'Join Clips', shortcut: '⌘J', action: () => console.log('Join') }
-      ]
-    },
-    {
-      label: 'Contracts',
-      items: [
-        { label: 'Create Contract', shortcut: '⌥⌘C', action: () => window.location.href = '/contracts/new' },
-        { label: 'View Contracts', shortcut: '⌥⌘V', action: () => window.location.href = '/contracts' },
-        { label: 'My Contracts', action: () => window.location.href = '/contracts/my' },
-        { divider: true },
-        { label: 'Duplicate Contract', shortcut: '⌘D', action: () => console.log('Duplicate contract') },
-        { label: 'Cancel Contract', action: () => console.log('Cancel contract') },
-        { divider: true },
-        { label: 'Mark Complete', shortcut: '⌘K', action: () => console.log('Mark complete') },
-        { label: 'Request Review', action: () => console.log('Request review') }
-      ]
-    },
-    {
-      label: 'Payments',
-      items: [
-        { label: 'Make Payment', shortcut: '⌘P', action: () => console.log('Make payment') },
-        { label: 'Request Payment', action: () => console.log('Request payment') },
-        { label: 'Payment History', action: () => console.log('Payment history') },
-        { divider: true },
-        { label: 'Escrow Service', action: () => console.log('Escrow') },
-        { label: 'Milestones', action: () => console.log('Milestones') },
-        { divider: true },
-        { label: 'Withdraw Funds', action: () => console.log('Withdraw') },
-        { label: 'Deposit Funds', action: () => console.log('Deposit') }
-      ]
-    },
-    {
-      label: 'Marketplace',
-      items: [
-        { label: 'Browse Jobs', shortcut: '⌘M', action: () => window.location.href = '/contracts' },
-        { label: 'Freelancers', action: () => window.location.href = '/freelancers' },
-        { label: 'Companies', action: () => window.location.href = '/companies' },
-        { label: 'Tasks', action: () => window.location.href = '/tasks' },
-        { divider: true },
-        { label: 'Post Job', shortcut: '⌘U', action: () => console.log('Post job') },
-        { label: 'Create Profile', action: () => console.log('Create profile') },
-        { divider: true },
-        { label: 'Browse Skills', action: () => console.log('Browse skills') },
-        { label: 'Trending', action: () => console.log('Trending jobs') }
+        { label: 'Find Jobs...', shortcut: '⌘F', action: () => window.location.href = '/search' }
       ]
     },
     {
       label: 'View',
       items: [
-        { label: 'Arrange View', shortcut: '⌘1', action: () => console.log('Arrange view') },
-        { label: 'Mixer View', shortcut: '⌘2', action: () => console.log('Mixer view') },
-        { label: 'List View', shortcut: '⌘3', action: () => console.log('List view') },
-        { label: 'Grid View', shortcut: '⌘4', action: () => console.log('Grid view') },
-        { divider: true },
-        { label: 'Show Inspector', shortcut: '⌥⌘I', action: () => console.log('Toggle inspector') },
-        { label: 'Show Browser', shortcut: '⌥⌘B', action: () => console.log('Toggle browser') },
-        { label: 'Show Console', shortcut: '⌥⌘C', action: () => console.log('Toggle console') },
+        { label: 'Show All Jobs', shortcut: '⌘1', action: () => window.location.href = '/' },
+        { label: 'My Applications', shortcut: '⌘2', action: () => window.location.href = '/applications' },
+        { label: 'Show Job Details', shortcut: '⌥⌘I', action: () => console.log('Toggle job details') },
         { divider: true },
         { label: 'Zoom In', shortcut: '⌘+', action: () => console.log('Zoom in') },
         { label: 'Zoom Out', shortcut: '⌘-', action: () => console.log('Zoom out') },
-        { label: 'Zoom to Fit', shortcut: '⌘0', action: () => console.log('Zoom fit') },
+        { label: 'Actual Size', shortcut: '⌘0', action: () => console.log('Actual size') },
         { divider: true },
         { label: 'Enter Full Screen', shortcut: '⌃⌘F', action: () => document.documentElement.requestFullscreen() }
       ]
     },
     {
-      label: 'Token',
+      label: 'Jobs',
       items: [
-        { label: 'bJobs Token', shortcut: '⌥⌘T', action: () => window.location.href = '/token' },
-        { label: 'Buy Tokens', action: () => window.location.href = '/exchange' },
+        { label: 'Post New Job', action: () => window.location.href = '/post' },
+        { label: 'Browse Jobs', action: () => window.location.href = '/' },
+        { label: 'My Applications', action: () => window.location.href = '/applications' },
+        { label: 'Saved Jobs', action: () => window.location.href = '/saved' },
         { divider: true },
-        { label: 'Staking Rewards', action: () => console.log('Staking') },
-        { label: 'Token Distribution', action: () => console.log('Distribution') },
-        { label: 'Governance', action: () => console.log('Governance') },
-        { divider: true },
-        { label: 'My Balance', action: () => console.log('View balance') },
-        { label: 'Exchange', action: handleOpenExchange },
-        { label: 'Transaction History', action: () => console.log('Transaction history') }
+        { label: 'Job Categories', action: () => window.location.href = '/categories' },
+        { label: 'Search Jobs...', action: () => window.location.href = '/search' }
       ]
     },
     {
       label: 'Blockchain',
       items: [
-        { label: 'Register Contract', action: () => console.log('Register contract') },
-        { label: 'Timestamp Job', action: () => console.log('Timestamp on chain') },
+        { label: 'Create Transaction', action: () => console.log('Create transaction') },
+        { label: 'Sign Message', action: () => console.log('Sign message') },
         { divider: true },
-        { label: 'Encrypt Data', action: () => console.log('Encrypt data') },
-        { label: 'Set Paywall', action: () => console.log('Set paywall') },
-        { label: 'Revenue Share', action: () => console.log('Setup revenue sharing') },
+        { label: 'Wallet', action: () => window.open('https://bitcoin-wallet-sable.vercel.app', '_blank') },
+        { label: 'Explorer', href: 'https://whatsonchain.com', target: '_blank' },
         { divider: true },
-        { label: 'Exchange', action: handleOpenExchange },
-        { label: 'Job Exchange', action: () => window.location.href = '/exchange' },
-        { divider: true },
-        { label: 'Verify on Chain', action: () => console.log('Verify') },
-        { label: 'View on Explorer', href: 'https://whatsonchain.com', target: '_blank' }
-      ]
-    },
-    {
-      label: 'Collaborate',
-      items: [
-        { label: 'Start Session', shortcut: '⌥⌘S', action: () => console.log('Start collab session') },
-        { label: 'Join Session...', action: () => console.log('Join session') },
-        { divider: true },
-        { label: 'Share Project...', action: () => {
-          navigator.clipboard.writeText(window.location.href)
-          alert('Project link copied!')
-        }},
-        { label: 'Invite Collaborator...', action: () => console.log('Invite') },
-        { divider: true },
-        { label: 'Chat', action: () => console.log('Open chat') },
-        { label: 'Comments', action: () => console.log('Show comments') },
-        { divider: true },
-        { label: 'Export for Collaboration', action: () => console.log('Export collab') }
+        { label: 'Network Status', action: () => console.log('Network status') }
       ]
     },
     {
@@ -205,11 +116,6 @@ export default function Taskbar() {
       items: [
         { label: 'Minimize', shortcut: '⌘M', action: () => console.log('Minimize') },
         { label: 'Zoom', action: () => console.log('Zoom') },
-        { divider: true },
-        { label: 'Jobs', action: () => window.location.href = '/contracts' },
-        { label: 'Marketplace', action: handleOpenMarketplace },
-        { label: 'Exchange', action: handleOpenExchange },
-        { label: 'Tasks', action: () => window.location.href = '/tasks' },
         { divider: true },
         { label: 'Bring All to Front', action: () => console.log('Bring to front') }
       ]
@@ -219,36 +125,31 @@ export default function Taskbar() {
       items: [
         { label: 'Bitcoin Jobs Help', shortcut: '⌘?', action: () => alert('Bitcoin Jobs v1.0\n\nDecentralized Job Marketplace on BSV') },
         { label: 'Keyboard Shortcuts', action: () => console.log('Show shortcuts') },
-        { label: 'Getting Started', action: () => console.log('Getting started guide') },
+        { label: 'Getting Started Guide', action: () => console.log('Getting started guide') },
         { divider: true },
-        { label: 'API Documentation', href: '/api/docs', target: '_blank' },
-        { label: 'Job Board Docs', href: 'https://docs.bitcoin-jobs.com', target: '_blank' },
-        { label: 'BSV SDK Docs', href: 'https://docs.bsvblockchain.org', target: '_blank' },
-        { divider: true },
-        { label: 'What\'s New', action: () => alert('New Features:\n\n• Smart Contract Jobs\n• Escrow Payments\n• Reputation System\n• Skills Verification\n• Token Rewards') },
-        { divider: true },
-        { label: 'Report Issue', href: 'https://github.com/bitcoin-apps-suite/bitcoin-jobs/issues', target: '_blank' },
-        { label: 'Contact Support', href: 'https://twitter.com/b0ase', target: '_blank' }
+        { label: 'Report Issue', href: 'https://github.com/bitcoin-corp/bitcoin-OS/issues', target: '_blank' },
+        { label: 'Contact Support', action: () => console.log('Contact support') }
       ]
     }
   ]
 
   const bitcoinApps: BitcoinApp[] = [
-    { name: 'Bitcoin Auth', color: '#ef4444', url: '#' },
-    { name: 'Bitcoin Chat', color: '#ff6500', url: '#' },
-    { name: 'Bitcoin Domains', color: '#eab308', url: '#' },
-    { name: 'Bitcoin Draw', color: '#10b981', url: '#' },
+    { name: 'Bitcoin OS', color: '#3b82f6', url: 'https://bitcoin-os.vercel.app/' },
+    { name: 'Bitcoin Apps Store', color: '#f97316', url: 'https://www.bitcoinapps.store/' },
+    { name: 'Bitcoin Wallet', color: '#f59e0b', url: 'https://bitcoin-wallet-sable.vercel.app' },
+    { name: 'Bitcoin Email', color: '#ef4444', url: 'https://bitcoin-email.vercel.app' },
+    { name: 'Bitcoin Music', color: '#a855f7', url: 'https://bitcoin-music.vercel.app' },
+    { name: 'Bitcoin Writer', color: '#f97316', url: 'https://bitcoin-writer.vercel.app' },
+    { name: 'Bitcoin Code', color: '#10b981', url: 'https://bitcoin-code.vercel.app' },
     { name: 'Bitcoin Drive', color: '#22c55e', url: 'https://bitcoin-drive.vercel.app' },
-    { name: 'Bitcoin Email', color: '#06b6d4', url: '#' },
-    { name: 'Bitcoin Exchange', color: '#3b82f6', url: '#', action: handleOpenExchange },
-    { name: 'Bitcoin Jobs', color: '#10b981', url: '#', current: true },
-    { name: 'Bitcoin Paint', color: '#a855f7', url: '#' },
-    { name: 'Bitcoin Pics', color: '#ec4899', url: '#' },
-    { name: 'Bitcoin Registry', color: '#f43f5e', url: '#' },
-    { name: 'Bitcoin Shares', color: '#f43f5e', url: '#' },
-    { name: 'Bitcoin Video', color: '#65a30d', url: '#' },
-    { name: 'Bitcoin Wallet', color: '#f59e0b', url: '#' },
-    { name: 'Bitcoin Writer', color: '#ff9500', url: 'https://bitcoin-writer.vercel.app' }
+    { name: 'Bitcoin Calendar', color: '#ec4899', url: 'https://bitcoin-calendar.vercel.app' },
+    { name: 'Bitcoin Exchange', color: '#3b82f6', url: 'https://bitcoin-exchange-iota.vercel.app' },
+    { name: 'Bitcoin Search', color: '#6b7280', url: 'https://bitcoin-search.vercel.app' },
+    { name: 'Bitcoin Spreadsheet', color: '#38bdf8', url: 'https://bitcoin-spreadsheet.vercel.app' },
+    { name: 'Bitcoin Jobs', color: '#10b981', url: 'https://bitcoin-jobs.vercel.app', current: true },
+    { name: 'Bitcoin Education', color: '#eab308', url: 'https://bitcoin-education-theta.vercel.app' },
+    { name: 'Bitcoin Paint', color: '#a855f7', url: 'https://bitcoin-paint.vercel.app' },
+    { name: 'Bitcoin Identity', color: '#3b82f6', url: 'https://bitcoin-identity.vercel.app' }
   ]
 
   useEffect(() => {
@@ -293,7 +194,7 @@ export default function Taskbar() {
           padding: '0 12px',
           fontSize: '18px',
           fontWeight: '500',
-          color: '#10b981'
+          color: '#40e0d0'
         }}>
           ₿
         </div>
@@ -312,7 +213,7 @@ export default function Taskbar() {
               padding: '0 12px',
               fontSize: '18px',
               fontWeight: '500',
-              color: '#10b981',
+              color: '#40e0d0',
               display: 'flex',
               alignItems: 'center',
               height: '28px',
@@ -344,7 +245,7 @@ export default function Taskbar() {
             <div style={{
               padding: '8px 16px',
               fontSize: '12px',
-              color: '#10b981',
+              color: '#40e0d0',
               fontWeight: '400',
               borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
               marginBottom: '4px'
@@ -352,70 +253,28 @@ export default function Taskbar() {
               Bitcoin Apps
             </div>
             
-            {bitcoinApps.map((app) => {
-              const isAction = 'action' in app && app.action
-              return isAction ? (
-                <button
-                  key={app.name}
-                  onClick={() => {
-                    app.action?.()
-                    setShowBitcoinSuite(false)
-                  }}
-                  style={{
-                    width: '100%',
-                    display: 'flex',
-                    alignItems: 'center',
-                    padding: '6px 16px',
-                    color: app.current ? '#ffffff' : '#ffffff',
-                    background: 'transparent',
-                    border: 'none',
-                    textDecoration: 'none',
-                    fontSize: '13px',
-                    transition: 'background 0.15s ease',
-                    cursor: 'pointer',
-                    fontWeight: app.current ? '500' : '400',
-                    textAlign: 'left'
-                  }}
-                  onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)'}
-                  onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
-                >
-                  <span 
-                    style={{ 
-                      color: app.color,
-                      marginRight: '12px',
-                      fontSize: '16px',
-                      fontWeight: '500'
-                    }}
-                  >
-                    ₿
-                  </span>
-                  <span>
-                    {app.name}
-                    {app.current && <span style={{ marginLeft: '8px', fontSize: '11px', opacity: 0.6 }}>(current)</span>}
-                  </span>
-                </button>
-              ) : (
-                <a
-                  key={app.name}
-                  href={app.url}
-                  target={app.url.startsWith('http') ? '_blank' : undefined}
-                  rel={app.url.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    padding: '6px 16px',
-                    color: app.current ? '#ffffff' : '#ffffff',
-                    background: 'transparent',
-                    textDecoration: 'none',
-                    fontSize: '13px',
-                    transition: 'background 0.15s ease',
-                    cursor: 'pointer',
-                    fontWeight: app.current ? '500' : '400'
-                  }}
-                  onClick={() => setShowBitcoinSuite(false)}
-                  onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)'}
-                  onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
-                >
+            {bitcoinApps.map((app) => (
+              <a
+                key={app.name}
+                href={app.url}
+                target={app.url.startsWith('http') ? '_blank' : undefined}
+                rel={app.url.startsWith('http') ? 'noopener noreferrer' : undefined}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  padding: '6px 16px',
+                  color: app.current ? '#ffffff' : '#ffffff',
+                  background: 'transparent',
+                  textDecoration: 'none',
+                  fontSize: '13px',
+                  transition: 'background 0.15s ease',
+                  cursor: 'pointer',
+                  fontWeight: app.current ? '500' : '400'
+                }}
+                onClick={() => setShowBitcoinSuite(false)}
+                onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)'}
+                onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
+              >
                 <span 
                   style={{ 
                     color: app.color,
@@ -431,8 +290,7 @@ export default function Taskbar() {
                   {app.current && <span style={{ marginLeft: '8px', fontSize: '11px', opacity: 0.6 }}>(current)</span>}
                 </span>
               </a>
-            )
-            })}
+            ))}
           </div>
         )}
         </div>
@@ -460,12 +318,7 @@ export default function Taskbar() {
                 transition: 'background 0.15s ease'
               }}
             >
-              {menu.label === 'Bitcoin Jobs' ? (
-                <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                  <BitcoinLogo size={16} />
-                  <span>{menu.label}</span>
-                </div>
-              ) : menu.label}
+              {menu.label}
             </button>
 
             {/* Dropdown Menu */}
@@ -575,7 +428,7 @@ export default function Taskbar() {
         style={{ 
           fontSize: '14px',
           fontWeight: '400',
-          color: '#10b981',
+          color: '#40e0d0',
           background: 'transparent',
           border: 'none',
           cursor: 'pointer',
@@ -587,8 +440,7 @@ export default function Taskbar() {
         }}
         title="Return to home"
       >
-        <BitcoinLogo size={18} />
-        <span>Bitcoin Jobs</span>
+        <span>₿ Bitcoin Jobs</span>
       </button>
 
       {/* Mobile Menu Button - Only visible on mobile */}
@@ -608,7 +460,7 @@ export default function Taskbar() {
         {showMobileMenu ? <X size={18} /> : <Menu size={18} />}
       </button>
 
-      {/* Right side - Links and Status items */}
+      {/* Right side - Status items */}
       <div className="hidden sm:flex" style={{
         marginLeft: 'auto',
         alignItems: 'center',
@@ -619,7 +471,7 @@ export default function Taskbar() {
       }}>
         {/* GitHub Link */}
         <a
-          href="https://github.com/bitcoin-apps-suite/bitcoin-jobs"
+          href="https://github.com/bitcoin-corp/bitcoin-OS"
           target="_blank"
           rel="noopener noreferrer"
           style={{
@@ -636,7 +488,7 @@ export default function Taskbar() {
         
         {/* Docs Link */}
         <a
-          href="/tasks"
+          href="/docs"
           style={{
             color: 'rgba(255, 255, 255, 0.8)',
             textDecoration: 'none',
@@ -646,42 +498,18 @@ export default function Taskbar() {
           onMouseEnter={(e) => e.currentTarget.style.color = '#40e0d0'}
           onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255, 255, 255, 0.8)'}
         >
-          Developers
-        </a>
-        
-        {/* Token Link */}
-        <a
-          href="/token"
-          style={{
-            color: 'rgba(255, 255, 255, 0.8)',
-            textDecoration: 'none',
-            transition: 'color 0.15s ease',
-            fontWeight: '400'
-          }}
-          onMouseEnter={(e) => e.currentTarget.style.color = '#40e0d0'}
-          onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255, 255, 255, 0.8)'}
-        >
-          $bJobs
+          Docs
         </a>
         
         {/* Divider */}
         <span style={{ color: 'rgba(255, 255, 255, 0.2)' }}>|</span>
         
         {/* Connection Status */}
-        {session ? (
-          <>
-            <span>{session.user?.email || 'Connected'}</span>
-            <span style={{ color: '#40e0d0' }}>●</span>
-          </>
-        ) : (
-          <>
-            <span>Not Connected</span>
-            <span style={{ color: '#ff4444', opacity: 0.6 }}>●</span>
-          </>
-        )}
+        <span>Bitcoin Jobs</span>
+        <span style={{ color: '#40e0d0' }}>●</span>
       </div>
 
-      {/* Mobile Menu Overlay - Optimized for touch */}
+      {/* Mobile Menu Overlay */}
       {showMobileMenu && (
         <div 
           className="block sm:hidden"
@@ -699,30 +527,6 @@ export default function Taskbar() {
           }}
         >
           <div style={{ padding: '16px' }}>
-            {/* User Status */}
-            <div style={{
-              padding: '12px',
-              background: 'rgba(255, 255, 255, 0.05)',
-              borderRadius: '8px',
-              marginBottom: '16px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between'
-            }}>
-              {session ? (
-                <>
-                  <span style={{ color: '#ffffff', fontSize: '14px' }}>{session.user?.email || 'Connected'}</span>
-                  <span style={{ color: '#40e0d0' }}>●</span>
-                </>
-              ) : (
-                <>
-                  <span style={{ color: '#ffffff', fontSize: '14px' }}>Not Connected</span>
-                  <span style={{ color: '#ff4444', opacity: 0.6 }}>●</span>
-                </>
-              )}
-            </div>
-
-
             {/* Menu Sections */}
             {menus.map((menu) => (
               <div key={menu.label} style={{
@@ -768,12 +572,6 @@ export default function Taskbar() {
                           borderRadius: '4px',
                           transition: 'background 0.15s ease'
                         }}
-                        onTouchStart={(e) => {
-                          e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)'
-                        }}
-                        onTouchEnd={(e) => {
-                          e.currentTarget.style.background = 'transparent'
-                        }}
                       >
                         {item.label}
                       </a>
@@ -796,12 +594,6 @@ export default function Taskbar() {
                           cursor: 'pointer',
                           borderRadius: '4px',
                           transition: 'background 0.15s ease'
-                        }}
-                        onTouchStart={(e) => {
-                          e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)'
-                        }}
-                        onTouchEnd={(e) => {
-                          e.currentTarget.style.background = 'transparent'
                         }}
                       >
                         {item.label}
