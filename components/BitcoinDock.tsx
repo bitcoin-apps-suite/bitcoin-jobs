@@ -203,14 +203,14 @@ const BitcoinDock: React.FC<DockProps> = ({ currentApp = 'bitcoin-jobs' }) => {
           <button 
             className="status-button" 
             title="Bitcoin Corporation"
-            onClick={() => window.location.href = 'https://bitcoin-corp.vercel.app/'}
+            onClick={() => window.location.href = 'https://www.thebitcoincorporation.website/'}
           >
             <Building2 className="status-icon" style={{ color: '#f7931a' }} />
           </button>
           <button 
             className="status-button" 
             title="Trust"
-            onClick={() => window.location.href = 'https://bitcoin-corp.vercel.app/trust'}
+            onClick={() => window.location.href = 'https://www.thebitcoincorporation.website/trust'}
           >
             <Shield className="status-icon" style={{ color: '#3b82f6' }} />
           </button>

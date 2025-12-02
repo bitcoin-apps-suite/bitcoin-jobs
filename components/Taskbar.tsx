@@ -102,6 +102,9 @@ export default function Taskbar() {
     {
       label: 'Blockchain',
       items: [
+        { label: 'Job Marketplace (Escrow)', action: () => window.location.href = '/marketplace' },
+        { label: 'Smart Contracts', action: () => window.location.href = '/contracts' },
+        { divider: true },
         { label: 'Create Transaction', action: () => console.log('Create transaction') },
         { label: 'Sign Message', action: () => console.log('Sign message') },
         { divider: true },

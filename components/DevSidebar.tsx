@@ -73,7 +73,6 @@ export default function DevSidebar() {
     // Token & NFT Features at top
     { path: '/token', icon: Coins, label: '$BJOBS Token', badge: 'NEW' },
     { path: '/exchange', icon: TrendingUp, label: 'Jobs Exchange' },
-    { path: '/marketplace', icon: ShoppingCart, label: 'NFT Marketplace' },
     
     // Job Seekers Section
     { divider: true },
@@ -92,6 +91,7 @@ export default function DevSidebar() {
     // Blockchain & NFT Section
     { divider: true },
     { section: 'BLOCKCHAIN' },
+    { path: '/marketplace', icon: ShoppingCart, label: 'Job Marketplace', badge: 'ESCROW' },
     { path: '/contracts', icon: FileCode, label: 'Smart Contracts' },
     { path: '/contracts/my', icon: DollarSign, label: 'My Contracts' },
     { path: '/exchange', icon: TrendingUp, label: 'Jobs Exchange' },

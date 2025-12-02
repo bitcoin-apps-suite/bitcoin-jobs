@@ -8,6 +8,7 @@ import Footer from './components/Footer';
 import JobExchangePage from './pages/JobExchangePage';
 import JobsPage from './pages/JobsPage';
 import PostJobPage from './pages/PostJobPage';
+import TokenPage from './pages/TokenPage';
 import { useBitcoinOS } from './utils/useBitcoinOS';
 
 function App() {
@@ -74,6 +75,7 @@ function App() {
             } />
             <Route path="/jobs" element={<JobsPage />} />
             <Route path="/post-job" element={<PostJobPage />} />
+            <Route path="/token" element={<TokenPage />} />
             <Route path="/developers" element={
               <div className="page-placeholder">
                 <h1>Developers Portal</h1>

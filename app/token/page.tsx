@@ -1,150 +1,319 @@
 'use client'
 
-import React from 'react'
-import { Briefcase, Search, TrendingUp, Coins, Award, Target } from 'lucide-react'
+import React from 'react';
+import './TokenPage.css';
 
 export default function TokenPage() {
-  const tokenStats = {
-    name: "Bitcoin Jobs Token",
-    symbol: "$bJobs",
-    totalSupply: "1,000,000,000",
-    price: "$0.0001", 
-    marketCap: "$100,000",
-    contractsAllocated: "0%",
-    maxContractsAllocation: "10%",
-    maxTaskAllocation: "1%",
-    holders: "1",
-    transactions: "0"
-  }
-
-  const tokenAllocation = [
-    { category: "Development Contracts", percentage: 10, amount: "100,000,000", color: "#40e0d0" },
-    { category: "Team & Advisors", percentage: 15, amount: "150,000,000", color: "#40e0d0" },
-    { category: "Community Rewards", percentage: 25, amount: "250,000,000", color: "rgba(64, 224, 208, 0.7)" },
-    { category: "Liquidity Pool", percentage: 20, amount: "200,000,000", color: "rgba(64, 224, 208, 0.5)" },
-    { category: "Marketing & Partnerships", percentage: 10, amount: "100,000,000", color: "rgba(64, 224, 208, 0.3)" },
-    { category: "Reserve Fund", percentage: 20, amount: "200,000,000", color: "rgba(255, 255, 255, 0.5)" }
-  ]
-
   return (
-    <div className="min-h-screen p-6">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <div className="flex items-center justify-center mb-8">
-            <div className="p-6 rounded-full" style={{ background: 'linear-gradient(135deg, #40e0d0 0%, #00ced1 100%)' }}>
-              <Briefcase className="w-12 h-12 text-black" />
-            </div>
-          </div>
-          <h1 className="mb-4" style={{ fontSize: 'clamp(3rem, 6vw, 4.5rem)', fontWeight: '200', letterSpacing: '-0.02em', lineHeight: '1.1' }}>
-            <span className="turquoise-gradient">{tokenStats.symbol}</span> Token
-          </h1>
-          <p className="mb-6" style={{ fontSize: 'clamp(1.2rem, 2.8vw, 1.8rem)', fontWeight: '300', color: 'rgba(255, 255, 255, 0.9)', letterSpacing: '0.01em', lineHeight: '1.3' }}>
-            {tokenStats.name}
+    <div className="App">
+      <div className="token-page">
+      <div className="token-container">
+        {/* Hero Section */}
+        <section className="token-hero">
+          <h1><span style={{color: '#ffffff'}}>The</span> <span style={{color: '#40e0d0'}}>Bitcoin Jobs</span> <span style={{color: '#ffffff'}}>Token</span></h1>
+          <p className="token-tagline">
+            Decentralized job marketplace meets sustainable economics
           </p>
-          <p style={{ fontSize: 'clamp(1rem, 2vw, 1.25rem)', fontWeight: '300', color: 'rgba(255, 255, 255, 0.7)', letterSpacing: '0.01em', lineHeight: '1.5', maxWidth: '900px', margin: '0 auto' }}>
-            The native utility token for Bitcoin Jobs, enabling decentralized job marketplace on Bitcoin SV 
-            with blockchain verification, smart contracts, and micropayment capabilities.
-          </p>
-        </div>
+          <div className="token-badge">$BJOBS</div>
+        </section>
 
-        {/* Token Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          <div 
-            className="rounded-xl p-6 border backdrop-blur-sm"
-            style={{
-              background: 'rgba(255, 255, 255, 0.03)',
-              borderColor: 'rgba(255, 255, 255, 0.12)',
-              backdropFilter: 'blur(10px)'
-            }}
-          >
-            <div className="text-sm text-gray-400 mb-1">Total Supply</div>
-            <div className="text-2xl font-bold text-white">{tokenStats.totalSupply}</div>
-            <div className="text-xs" style={{ color: '#40e0d0' }}>Fixed Supply</div>
-          </div>
-          <div 
-            className="rounded-xl p-6 border backdrop-blur-sm"
-            style={{
-              background: 'rgba(255, 255, 255, 0.03)',
-              borderColor: 'rgba(255, 255, 255, 0.12)',
-              backdropFilter: 'blur(10px)'
-            }}
-          >
-            <div className="text-sm text-gray-400 mb-1">Current Price</div>
-            <div className="text-2xl font-bold text-white">{tokenStats.price}</div>
-            <div className="text-xs" style={{ color: '#40e0d0' }}>+0% (24h)</div>
-          </div>
-          <div 
-            className="rounded-xl p-6 border backdrop-blur-sm"
-            style={{
-              background: 'rgba(255, 255, 255, 0.03)',
-              borderColor: 'rgba(255, 255, 255, 0.12)',
-              backdropFilter: 'blur(10px)'
-            }}
-          >
-            <div className="text-sm text-gray-400 mb-1">Market Cap</div>
-            <div className="text-2xl font-bold text-white">{tokenStats.marketCap}</div>
-            <div className="text-xs text-gray-400">Circulating Supply</div>
-          </div>
-          <div 
-            className="rounded-xl p-6 border backdrop-blur-sm"
-            style={{
-              background: 'rgba(255, 255, 255, 0.03)',
-              borderColor: 'rgba(255, 255, 255, 0.12)',
-              backdropFilter: 'blur(10px)'
-            }}
-          >
-            <div className="text-sm text-gray-400 mb-1">Contracts Allocated</div>
-            <div className="text-2xl font-bold text-white">{tokenStats.contractsAllocated}</div>
-            <div className="text-xs" style={{ color: '#40e0d0' }}>Max: {tokenStats.maxContractsAllocation}</div>
-          </div>
-        </div>
-
-        {/* Contract Rules */}
-        <div 
-          className="rounded-xl p-8 border backdrop-blur-sm"
-          style={{
-            background: 'rgba(255, 255, 255, 0.03)',
-            borderColor: 'rgba(255, 255, 255, 0.12)',
-            backdropFilter: 'blur(10px)'
-          }}
-        >
-          <h2 className="text-2xl font-light text-white mb-6" style={{ letterSpacing: '-0.01em' }}>Development Contract Rules</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div>
-              <h3 className="text-lg font-medium text-white mb-4" style={{ letterSpacing: '-0.01em' }}>Token Allocation Limits</h3>
-              <ul className="space-y-3" style={{ color: 'rgba(255, 255, 255, 0.7)', fontWeight: '300' }}>
-                <li className="flex items-center">
-                  <div className="w-2 h-2 rounded-full mr-3" style={{ background: '#40e0d0' }}></div>
-                  Maximum 10% of total supply for all contracts
-                </li>
-                <li className="flex items-center">
-                  <div className="w-2 h-2 rounded-full mr-3" style={{ background: '#40e0d0' }}></div>
-                  Maximum 1% of total supply per individual task
-                </li>
-                <li className="flex items-center">
-                  <div className="w-2 h-2 rounded-full mr-3" style={{ background: 'rgba(255, 255, 255, 0.5)' }}></div>
-                  Smart contract enforced payment releases
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-lg font-medium text-white mb-4" style={{ letterSpacing: '-0.01em' }}>Current Allocation</h3>
-              <div className="space-y-4">
-                {tokenAllocation.map((item, index) => (
-                  <div key={index} className="flex items-center justify-between">
-                    <div className="flex items-center">
-                      <div className="w-4 h-4 rounded-full mr-3" style={{ background: item.color }}></div>
-                      <span className="text-sm" style={{ color: 'rgba(255, 255, 255, 0.9)', fontWeight: '300' }}>{item.category}</span>
-                    </div>
-                    <span className="font-medium" style={{ color: '#40e0d0' }}>{item.percentage}%</span>
-                  </div>
-                ))}
+        {/* Philosophy Section */}
+        <section className="philosophy-section">
+          <h2>Our Open-Source Philosophy</h2>
+          <div className="philosophy-content">
+            <p>
+              Bitcoin Jobs is an <strong>open-source project</strong> licensed under MIT and BSV licenses. 
+              Our intention is to foster an open culture where forking, cloning, and adding to the code 
+              and features is welcomed and encouraged.
+            </p>
+            <p>
+              The $BJOBS token represents our approach to creating a sustainable economic model that 
+              aims to reward contributors while maintaining transparency and openness.
+            </p>
+            <div className="philosophy-points">
+              <div className="point">
+                <h3>Open Culture</h3>
+                <p>MIT & BSV Licensed, fork-friendly, collaborative</p>
+              </div>
+              <div className="point">
+                <h3>Community First</h3>
+                <p>Contributors earn tokens through meaningful work</p>
+              </div>
+              <div className="point">
+                <h3>Value Aligned</h3>
+                <p>Success shared with those who build it</p>
               </div>
             </div>
           </div>
-        </div>
+        </section>
+
+        {/* Token Model Section */}
+        <section className="token-model-section">
+          <h2>The $BJOBS Token Model</h2>
+          <div className="model-card">
+            <h3>How It Works</h3>
+            <ul>
+              <li>
+                <strong>Token Distribution:</strong> Tokens are allocated at our discretion to developers 
+                who contribute meaningful code that gets merged into production
+              </li>
+              <li>
+                <strong>Revenue Sharing:</strong> The Bitcoin Corporation LTD intends to distribute 
+                dividends to token holders from platform transaction fees and premium services
+              </li>
+              <li>
+                <strong>Contribution = Ownership:</strong> Build value, receive tokens, share in success
+              </li>
+              <li>
+                <strong>Transparent Allocation:</strong> All token grants are recorded on-chain via BSV
+              </li>
+            </ul>
+          </div>
+
+          <div className="model-card warning">
+            <h3>Important Notices</h3>
+            <ul>
+              <li>
+                <strong>No Guarantees:</strong> Token allocation is entirely discretionary with no promises 
+                of distribution for any particular contribution
+              </li>
+              <li>
+                <strong>Not Employment:</strong> Contributing and receiving tokens does not constitute 
+                an employment relationship or contract
+              </li>
+              <li>
+                <strong>Not a Public Offering:</strong> This is not a solicitation for investment or 
+                capital raising. $BJOBS tokens are rewards for contribution, not investment instruments
+              </li>
+              <li>
+                <strong>Future Equity:</strong> The Bitcoin Corporation LTD may incorporate and offer 
+                regulated equity shares separately from the token system
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        {/* Business Model Section */}
+        <section className="business-section">
+          <h2>The Bitcoin Corporation LTD</h2>
+          <div className="business-content">
+            <p className="intro">
+              Our vision is to create a sustainable decentralized job marketplace through a hybrid model that 
+              preserves freedom while generating value for all participants.
+            </p>
+
+            <div className="business-model">
+              <h3>Revenue Model</h3>
+              <div className="revenue-streams">
+                <div className="stream">
+                  <h4>Basic Posting</h4>
+                  <p>Standard job listings, basic features</p>
+                  <p className="price">$5/post</p>
+                </div>
+                <div className="stream featured">
+                  <h4>Premium Jobs</h4>
+                  <p>Featured listings, extended reach</p>
+                  <p className="price">$25/post</p>
+                </div>
+                <div className="stream">
+                  <h4>Enterprise</h4>
+                  <p>Custom branding, bulk postings</p>
+                  <p className="price">$199/month</p>
+                </div>
+              </div>
+              
+              <h3 style={{marginTop: '40px'}}>Platform Revenue</h3>
+              <div className="revenue-streams">
+                <div className="stream">
+                  <h4>Transaction Fees</h4>
+                  <p>Payment processing for jobs</p>
+                  <p className="price">2.5% fee</p>
+                </div>
+                <div className="stream featured">
+                  <h4>Escrow Services</h4>
+                  <p>Secure milestone payments</p>
+                  <p className="price">1.5% fee</p>
+                </div>
+                <div className="stream">
+                  <h4>Premium Features</h4>
+                  <p>Advanced matching, analytics</p>
+                  <p className="price">3% fee</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="value-flow">
+              <h3>Value Flow</h3>
+              <div className="flow-diagram">
+                <div className="flow-item">
+                  <span>Job postings + Platform fees</span>
+                  <span className="arrow">→</span>
+                </div>
+                <div className="flow-item">
+                  <span>Revenue to The Bitcoin Corporation LTD</span>
+                  <span className="arrow">→</span>
+                </div>
+                <div className="flow-item">
+                  <span>Dividends to $BJOBS holders</span>
+                  <span className="arrow">→</span>
+                </div>
+                <div className="flow-item">
+                  <span>Contributors rewarded for building</span>
+                </div>
+              </div>
+              <p style={{textAlign: 'center', marginTop: '20px', fontSize: '14px', color: 'rgba(255, 255, 255, 0.6)'}}>
+                Bitcoin Jobs enables decentralized job matching and secure payments,
+                generating platform fees that contribute to the ecosystem's sustainability.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* How to Contribute Section */}
+        <section className="contribute-section">
+          <h2>How to Earn $BJOBS Tokens</h2>
+          <div className="contribute-steps">
+            <div className="step">
+              <div className="step-number">1</div>
+              <h3>Fork & Build</h3>
+              <p>Fork the repository and implement features, fixes, or improvements</p>
+            </div>
+            <div className="step">
+              <div className="step-number">2</div>
+              <h3>Submit PR</h3>
+              <p>Create a pull request with clear description and documentation</p>
+            </div>
+            <div className="step">
+              <div className="step-number">3</div>
+              <h3>Get Merged</h3>
+              <p>Quality code that adds value gets merged into production</p>
+            </div>
+            <div className="step">
+              <div className="step-number">4</div>
+              <h3>Receive Tokens</h3>
+              <p>Tokens allocated based on contribution impact and quality</p>
+            </div>
+          </div>
+
+          <div className="contribution-examples">
+            <h3>What We Value</h3>
+            <ul>
+              <li>✅ Core marketplace features</li>
+              <li>✅ Performance improvements</li>
+              <li>✅ Security enhancements</li>
+              <li>✅ Documentation and tests</li>
+              <li>✅ UI/UX improvements</li>
+              <li>✅ Bug fixes and refactoring</li>
+            </ul>
+          </div>
+        </section>
+
+        {/* Contract Information Section */}
+        <section className="stats-section">
+          <h2>Contract Information</h2>
+          <div className="contract-info">
+            <div className="contract-details">
+              <h3>$bJobs Token Contract</h3>
+              <div className="contract-item">
+                <strong>Contract ID:</strong>
+                <span className="contract-id">Coming Soon - BSV-20 Token Contract</span>
+              </div>
+              <div className="contract-item">
+                <strong>Symbol:</strong>
+                <span>$$bJobs</span>
+              </div>
+              <div className="contract-item">
+                <strong>Blockchain:</strong>
+                <span>Bitcoin SV (BSV-20)</span>
+              </div>
+              <div className="contract-item">
+                <strong>Decimals:</strong>
+                <span>0</span>
+              </div>
+              <div className="contract-item">
+                <strong>1sat Market:</strong>
+                <span className="contract-link">
+                  Token deployment in progress
+                </span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Token Stats Section */}
+        <section className="stats-section">
+          <h2>Token Statistics</h2>
+          <div className="stats-grid">
+            <div className="stat">
+              <h3>Total Supply</h3>
+              <p className="stat-value">1,000,000,000</p>
+              <p className="stat-label">$BJOBS tokens</p>
+            </div>
+            <div className="stat">
+              <h3>Distributed</h3>
+              <p className="stat-value">0</p>
+              <p className="stat-label">Tokens allocated</p>
+            </div>
+            <div className="stat">
+              <h3>Contributors</h3>
+              <p className="stat-value">1</p>
+              <p className="stat-label">Active developers</p>
+            </div>
+            <div className="stat">
+              <h3>Network</h3>
+              <p className="stat-value">BSV</p>
+              <p className="stat-label">Blockchain</p>
+            </div>
+          </div>
+        </section>
+
+        {/* Legal Section */}
+        <section className="legal-section">
+          <h2>Legal & Regulatory Notice</h2>
+          <div className="legal-content">
+            <p>
+              <strong>Revenue Sharing Model:</strong> The $BJOBS token is designed to enable revenue 
+              sharing with contributors through dividend distributions. Token holders may receive dividends 
+              based on platform revenues from job posting fees and transaction processing.
+            </p>
+            <p>
+              <strong>Trading & Liquidity:</strong> The $BJOBS token is intended to be freely tradable 
+              on the Bitcoin Jobs Exchange and associated platforms. We encourage an active secondary 
+              market to provide liquidity and price discovery for contributors' work.
+            </p>
+            <p>
+              By participating in the token ecosystem, you acknowledge that token allocation is discretionary, 
+              regulatory frameworks may evolve, and you should conduct your own due diligence regarding 
+              tax and legal implications in your jurisdiction.
+            </p>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="cta-section">
+          <h2>Ready to Build the Future?</h2>
+          <div className="cta-buttons">
+            <a 
+              href="https://github.com/bitcoin-apps-suite/bitcoin-jobs" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="cta-btn primary"
+            >
+              <svg height="20" width="20" viewBox="0 0 16 16" fill="currentColor">
+                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+              </svg>
+              View on GitHub
+            </a>
+            <a 
+              href="/docs" 
+              className="cta-btn secondary"
+            >
+              Read Developer Docs
+            </a>
+          </div>
+        </section>
       </div>
     </div>
-  )
+    </div>
+  );
 }
