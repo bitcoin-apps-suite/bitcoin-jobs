@@ -33,15 +33,8 @@ contract JobListing {
   const [isCompiling, setIsCompiling] = useState(false)
 
   const handleCompile = () => {
-    setIsCompiling(true)
-    setOutput('Compiling contract...')
-    setTimeout(() => {
-      setOutput(`✓ Contract compiled successfully
-✓ No errors found
-✓ Gas estimation: 245,892
-✓ Ready for deployment`)
-      setIsCompiling(false)
-    }, 1500)
+    setIsCompiling(false)
+    setOutput('Compiling in the browser is not live yet. Copy the contract and build it with scrypt-cli locally.')
   }
 
   return (

@@ -1,12 +1,13 @@
 'use client'
 
-import React, { useState, useMemo } from 'react'
+import React, { useState, useMemo, useEffect } from 'react'
 import { Search, MapPin, DollarSign, Clock, Filter, Briefcase, Users, Building, Globe } from 'lucide-react'
 import Link from 'next/link'
 import { format } from 'date-fns'
 
 interface Job {
-  id: number
+  id: string
+  txid?: string
   title: string
   company: string
   location: string
@@ -21,53 +22,15 @@ interface Job {
   bitcoin: boolean
 }
 
-const mockJobs: Job[] = [
-  {
-    id: 1,
-    title: 'Senior Bitcoin Developer',
-    company: 'Bitcoin Corp',
-    location: 'Remote',
-    type: 'Full-time',
-    salary: '500,000 - 800,000 sats/month',
-    description: 'We are looking for an experienced Bitcoin developer to join our team and work on cutting-edge blockchain applications.',
-    requirements: ['5+ years experience with Bitcoin/BSV', 'Smart contract development', 'Node.js expertise'],
-    posted: new Date('2024-01-15'),
-    category: 'Engineering',
-    experience: 'Senior',
-    skills: ['Bitcoin', 'BSV', 'sCrypt', 'Node.js'],
-    bitcoin: true
-  },
-  {
-    id: 2,
-    title: 'Blockchain Product Manager',
-    company: 'Satoshi Labs',
-    location: 'London, UK',
-    type: 'Full-time',
-    salary: '£70,000 - £90,000',
-    description: 'Lead product development for our suite of Bitcoin applications.',
-    requirements: ['3+ years PM experience', 'Blockchain knowledge', 'Agile methodology'],
-    posted: new Date('2024-01-20'),
-    category: 'Product',
-    experience: 'Mid-level',
-    skills: ['Product Management', 'Blockchain', 'Agile'],
-    bitcoin: true
-  },
-  {
-    id: 3,
-    title: 'Smart Contract Developer',
-    company: 'DeFi Solutions',
-    location: 'San Francisco, CA',
-    type: 'Contract',
-    salary: '$150/hour',
-    description: 'Develop and audit smart contracts for DeFi protocols on Bitcoin SV.',
-    requirements: ['sCrypt expertise', 'Security auditing experience', 'DeFi protocol knowledge'],
-    posted: new Date('2024-01-22'),
-    category: 'Engineering',
-    experience: 'Senior',
-    skills: ['sCrypt', 'Smart Contracts', 'DeFi', 'Security'],
-    bitcoin: true
+// Jobs you posted on-chain from this device. A public feed of everyone's posts needs an on-chain indexer (not live yet).
+const POSTED_KEY = 'bjobs:posted'
+function loadPosted(): Job[] {
+  try {
+    return (JSON.parse(localStorage.getItem(POSTED_KEY) || '[]') as Job[]).map((j) => ({ ...j, posted: new Date(j.posted) }))
+  } catch {
+    return []
   }
-]
+}
 
 export default function JobsPage() {
   const [searchTerm, setSearchTerm] = useState('')
@@ -75,9 +38,11 @@ export default function JobsPage() {
   const [typeFilter, setTypeFilter] = useState<string>('all')
   const [categoryFilter, setCategoryFilter] = useState<string>('all')
   const [showFilters, setShowFilters] = useState(false)
+  const [jobs, setJobs] = useState<Job[]>([])
+  useEffect(() => { setJobs(loadPosted()) }, [])
 
   const filteredJobs = useMemo(() => {
-    return mockJobs.filter(job => {
+    return jobs.filter(job => {
       const matchesSearch = job.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                            job.company.toLowerCase().includes(searchTerm.toLowerCase()) ||
                            job.description.toLowerCase().includes(searchTerm.toLowerCase())
@@ -87,7 +52,7 @@ export default function JobsPage() {
       
       return matchesSearch && matchesLocation && matchesType && matchesCategory
     })
-  }, [searchTerm, locationFilter, typeFilter, categoryFilter])
+  }, [jobs, searchTerm, locationFilter, typeFilter, categoryFilter])
 
   const categories = ['all', 'Engineering', 'Product', 'Design', 'Marketing', 'Sales', 'Operations']
   const jobTypes = ['all', 'Full-time', 'Part-time', 'Contract', 'Remote']
@@ -244,77 +209,6 @@ export default function JobsPage() {
           )}
         </div>
 
-        {/* Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-          <div 
-            className="rounded-xl p-6 border backdrop-blur-sm"
-            style={{
-              background: 'rgba(255, 255, 255, 0.03)',
-              borderColor: 'rgba(255, 255, 255, 0.12)',
-              backdropFilter: 'blur(10px)'
-            }}
-          >
-            <div className="flex items-center gap-3">
-              <Briefcase className="w-8 h-8" style={{ color: '#40e0d0' }} />
-              <div>
-                <div className="text-2xl font-bold text-white">{filteredJobs.length}</div>
-                <div className="text-gray-400">Active Jobs</div>
-              </div>
-            </div>
-          </div>
-          
-          <div 
-            className="rounded-xl p-6 border backdrop-blur-sm"
-            style={{
-              background: 'rgba(255, 255, 255, 0.03)',
-              borderColor: 'rgba(255, 255, 255, 0.12)',
-              backdropFilter: 'blur(10px)'
-            }}
-          >
-            <div className="flex items-center gap-3">
-              <Building className="w-8 h-8" style={{ color: '#40e0d0' }} />
-              <div>
-                <div className="text-2xl font-bold text-white">125</div>
-                <div className="text-gray-400">Companies</div>
-              </div>
-            </div>
-          </div>
-          
-          <div 
-            className="rounded-xl p-6 border backdrop-blur-sm"
-            style={{
-              background: 'rgba(255, 255, 255, 0.03)',
-              borderColor: 'rgba(255, 255, 255, 0.12)',
-              backdropFilter: 'blur(10px)'
-            }}
-          >
-            <div className="flex items-center gap-3">
-              <Users className="w-8 h-8" style={{ color: '#40e0d0' }} />
-              <div>
-                <div className="text-2xl font-bold text-white">3,450</div>
-                <div className="text-gray-400">Freelancers</div>
-              </div>
-            </div>
-          </div>
-          
-          <div 
-            className="rounded-xl p-6 border backdrop-blur-sm"
-            style={{
-              background: 'rgba(255, 255, 255, 0.03)',
-              borderColor: 'rgba(255, 255, 255, 0.12)',
-              backdropFilter: 'blur(10px)'
-            }}
-          >
-            <div className="flex items-center gap-3">
-              <Globe className="w-8 h-8" style={{ color: '#40e0d0' }} />
-              <div>
-                <div className="text-2xl font-bold text-white">52</div>
-                <div className="text-gray-400">Countries</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
         {/* Job Listings */}
         <div className="space-y-4">
           {filteredJobs.map(job => (
@@ -408,40 +302,11 @@ export default function JobsPage() {
                     </div>
 
                     <div className="flex gap-2">
-                      <Link 
-                        href={`/jobs/${job.id}`}
-                        className="px-4 py-2 border text-white rounded-lg transition-all"
-                        style={{
-                          background: 'rgba(255, 255, 255, 0.03)',
-                          borderColor: 'rgba(255, 255, 255, 0.2)'
-                        }}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.background = 'rgba(255, 255, 255, 0.06)';
-                          e.currentTarget.style.borderColor = '#40e0d0';
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.background = 'rgba(255, 255, 255, 0.03)';
-                          e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
-                        }}
-                      >
-                        View Details
-                      </Link>
-                      <button 
-                        className="px-4 py-2 text-black rounded-lg font-medium transition-all"
-                        style={{
-                          background: 'linear-gradient(135deg, #40e0d0 0%, #00ced1 100%)'
-                        }}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.transform = 'translateY(-1px)';
-                          e.currentTarget.style.boxShadow = '0 5px 15px rgba(64, 224, 208, 0.3)';
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.transform = 'translateY(0)';
-                          e.currentTarget.style.boxShadow = 'none';
-                        }}
-                      >
-                        Apply Now
-                      </button>
+                      {job.txid && (
+                        <a href={`https://whatsonchain.com/tx/${job.txid}`} target="_blank" rel="noopener noreferrer" className="px-4 py-2 border text-white rounded-lg" style={{ borderColor: 'rgba(255, 255, 255, 0.2)' }}>
+                          On-chain record
+                        </a>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -450,35 +315,12 @@ export default function JobsPage() {
           ))}
         </div>
 
-        {/* Load More */}
-        {filteredJobs.length > 0 && (
-          <div className="text-center mt-8">
-            <button 
-              className="px-8 py-3 border text-white rounded-lg font-medium transition-all"
-              style={{
-                background: 'rgba(255, 255, 255, 0.03)',
-                borderColor: 'rgba(255, 255, 255, 0.2)'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.06)';
-                e.currentTarget.style.borderColor = '#40e0d0';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'rgba(255, 255, 255, 0.03)';
-                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
-              }}
-            >
-              Load More Jobs
-            </button>
-          </div>
-        )}
-
         {/* No Results */}
         {filteredJobs.length === 0 && (
           <div className="text-center py-12">
             <Briefcase className="w-16 h-16 text-gray-500 mx-auto mb-4" />
             <h3 className="text-xl font-semibold text-white mb-2">No jobs found</h3>
-            <p className="text-gray-400">Try adjusting your filters or search terms</p>
+            <p className="text-gray-400">{jobs.length === 0 ? 'Jobs you post on-chain from this device show here. A public board of everyone\'s jobs is not live yet.' : 'Try adjusting your filters or search terms'}</p>
           </div>
         )}
       </div>
