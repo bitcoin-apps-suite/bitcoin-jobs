@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import { Briefcase, ArrowLeft, Upload, DollarSign, MapPin, Clock } from 'lucide-react'
 import Link from 'next/link'
+import { useWallet, publishRecord } from '@/lib/bwallet'
 
 export default function NewJobPage() {
   const [formData, setFormData] = useState({
@@ -16,10 +17,39 @@ export default function NewJobPage() {
     skills: ''
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const { user, connect } = useWallet()
+  const [posting, setPosting] = useState(false)
+  const [result, setResult] = useState<{ ok: boolean; text: string } | null>(null)
+
+  // Publish the job on-chain under your wallet identity. The wallet shows the fee before you approve.
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    alert('Job posting will be created once backend is connected!')
-    console.log('Form data:', formData)
+    if (!user) { await connect(); return }
+    setPosting(true)
+    setResult(null)
+    try {
+      const job = {
+        title: formData.title,
+        company: formData.company,
+        location: formData.location,
+        type: formData.type,
+        salary: formData.salary,
+        description: formData.description,
+        requirements: formData.requirements.split('\n').map((r) => r.trim()).filter(Boolean),
+        skills: formData.skills.split(',').map((s) => s.trim()).filter(Boolean),
+      }
+      const r = await publishRecord(['bJobs', 'job', user.identityKey, JSON.stringify(job)], 'Post a job on Bitcoin Jobs')
+      const posted = { ...job, id: r.txid ?? String(Date.now()), txid: r.txid, posted: new Date().toISOString(), category: 'Engineering', experience: '', bitcoin: true }
+      try {
+        const list = JSON.parse(localStorage.getItem('bjobs:posted') || '[]')
+        localStorage.setItem('bjobs:posted', JSON.stringify([posted, ...list]))
+      } catch {}
+      setResult({ ok: true, text: r.txid ? `Posted on-chain: ${r.txid}` : 'Posted on-chain.' })
+    } catch (err) {
+      setResult({ ok: false, text: err instanceof Error ? err.message : 'The wallet did not sign.' })
+    } finally {
+      setPosting(false)
+    }
   }
 
   return (
@@ -231,10 +261,13 @@ export default function NewJobPage() {
                   e.currentTarget.style.boxShadow = 'none'
                 }}
               >
-                Post Job
+                {posting ? 'Waiting for wallet…' : user ? 'Post Job on-chain' : 'Sign in with bWalletX to post'}
               </button>
             </div>
           </div>
+          {result && (
+            <p style={{ color: result.ok ? '#22c55e' : '#f87171', wordBreak: 'break-all' }}>{result.text}</p>
+          )}
         </form>
       </div>
     </div>

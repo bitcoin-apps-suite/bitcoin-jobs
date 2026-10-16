@@ -2,7 +2,8 @@
 
 import { useState, useRef, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
-import { useSession, signOut } from 'next-auth/react'
+import { useWallet, connectWallet } from '@/lib/bwallet'
+import WalletAuth from './WalletAuth'
 
 interface DropdownItem {
   label?: string
@@ -27,7 +28,7 @@ interface BitcoinApp {
 }
 
 export default function Taskbar() {
-  const { data: session } = useSession()
+  const { user: session, disconnect: signOut } = useWallet()
   const [activeMenu, setActiveMenu] = useState<string | null>(null)
   const [showBitcoinSuite, setShowBitcoinSuite] = useState(false)
   const [showMobileMenu, setShowMobileMenu] = useState(false)
@@ -44,7 +45,7 @@ export default function Taskbar() {
         { label: 'Preferences...', shortcut: '⌘,', action: () => console.log('Preferences') },
         { label: 'Job Settings...', action: () => console.log('Job settings') },
         { divider: true },
-        { label: session ? 'Sign Out' : 'Sign In', shortcut: '⌘Q', action: session ? () => signOut() : () => document.querySelector<HTMLButtonElement>('[data-signin]')?.click() }
+        { label: session ? 'Sign Out' : 'Sign In', shortcut: '⌘Q', action: session ? () => signOut() : () => { connectWallet().catch(() => alert('No BRC-100 wallet found. Open Bitcoin Jobs inside bWalletX, or run bWalletX on this computer.')) } }
       ]
     },
     {
@@ -472,6 +473,7 @@ export default function Taskbar() {
         fontSize: '12px',
         color: 'rgba(255, 255, 255, 0.8)'
       }}>
+        <WalletAuth />
         {/* GitHub Link */}
         <a
           href="https://github.com/bitcoin-corp/bitcoin-OS"

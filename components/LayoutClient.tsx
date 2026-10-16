@@ -7,7 +7,6 @@ import DevBar from '@/components/DevBar'
 import AppWrapper from '@/components/AppWrapper'
 import Footer from '@/components/Footer'
 import DockManager from '@/components/DockManager'
-import TickerSidebar from '@/components/TickerSidebar'
 import { HoverProvider } from '@/components/HoverContext'
 
 interface LayoutClientProps {
@@ -43,7 +42,7 @@ export default function LayoutClient({ children }: LayoutClientProps) {
 
   // Calculate margins based on DevBar and Ticker states
   const contentMarginLeft = isDevBarCollapsed ? '60px' : '260px'
-  const contentMarginRight = isTickerCollapsed ? '60px' : '280px'
+  const contentMarginRight = '0px'
 
   if (!mounted) {
     // Return a placeholder with the default collapsed state during SSR
@@ -55,7 +54,7 @@ export default function LayoutClient({ children }: LayoutClientProps) {
         <div style={{ 
           marginTop: '72px',
           marginLeft: '60px', // Default to collapsed
-          marginRight: '60px', // Default to ticker collapsed
+          marginRight: '0px',
           minHeight: 'calc(100vh - 72px)',
           display: 'flex',
           flexDirection: 'column',
@@ -69,7 +68,6 @@ export default function LayoutClient({ children }: LayoutClientProps) {
           <Footer />
         </div>
         <DockManager currentApp="bitcoin-jobs" />
-        <TickerSidebar />
       </HoverProvider>
     )
   }
@@ -97,7 +95,6 @@ export default function LayoutClient({ children }: LayoutClientProps) {
         <Footer />
       </div>
       <DockManager currentApp="bitcoin-jobs" />
-      <TickerSidebar />
     </HoverProvider>
   )
 }

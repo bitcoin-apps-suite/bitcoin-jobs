@@ -3,10 +3,12 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: false,
   },
-  eslint: {
-    ignoreDuringBuilds: false,
+  async headers() {
+    return [{
+      source: '/:path*',
+      headers: [{ key: 'Content-Security-Policy', value: "frame-ancestors 'self' capacitor://localhost https://localhost https://web.bwalletx.com https://desktop.bwalletx.com" }],
+    }];
   },
-  outputFileTracingRoot: '/Users/b0ase/Projects/bitcoin-OS/apps/bitcoin-jobs',
 }
 
 module.exports = nextConfig
